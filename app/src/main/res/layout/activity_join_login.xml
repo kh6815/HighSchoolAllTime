@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Join_login">
+
+    <TextView
+        android:id="@+id/JoinView"
+        android:layout_width="323dp"
+        android:layout_height="49dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="회원가입"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="30dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <EditText
+        android:id="@+id/SchoolNameText"
+        android:layout_width="323dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/JoinView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-85dp"
+        android:ems="10"
+        android:hint="학교명을 입력하세요"
+        android:inputType="textPersonName"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="120dp" />
+
+    <EditText
+        android:id="@+id/IDText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/SchoolNameText"
+        android:layout_alignBottom="@id/SchoolNameText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="-51dp"
+        android:ems="10"
+        android:hint="ID"
+        android:inputType="textPersonName"
+        tools:ignore="DuplicateIds,MissingConstraints"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="184dp" />
+
+    <Button
+        android:id="@+id/IDCheckbutton"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/SchoolNameText"
+        android:layout_alignBottom="@id/SchoolNameText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="-50dp"
+        android:text="중복확인"
+        android:textSize="12sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="302dp"
+        tools:layout_editor_absoluteY="177dp" />
+
+    <EditText
+        android:id="@+id/LoginPasswordText"
+        android:layout_width="323dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/IDText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-50dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="251dp" />
+
+    <LinearLayout
+        android:id="@+id/password_CheckTextLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginBottom="-50dp"
+        android:layout_alignStart="@id/LoginPasswordText"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_alignBottom="@id/LoginPasswordText">
+
+        <EditText
+            android:id="@+id/password_CheckText"
+            android:layout_width="323dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-50dp"
+            android:ems="10"
+            android:hint="Password Check"
+            android:inputType="textPassword"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/passwordCheckImage"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:scaleType="fitStart" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/LoginIDText"
+        android:layout_width="323dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/password_CheckTextLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-50dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        tools:ignore="DuplicateIds,MissingConstraints"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="388dp" />
+
+    <EditText
+        android:id="@+id/EmailText"
+        android:layout_width="323dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/LoginIDText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-50dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="461dp" />
+
+
+    <RadioGroup
+        android:id="@+id/userGrade_radioGroup"
+        android:layout_width="302dp"
+        android:layout_height="36dp"
+        android:layout_below="@+id/EmailText"
+        android:layout_alignStart="@+id/EmailText"
+        android:layout_alignEnd="@+id/EmailText"
+        android:layout_alignBottom="@+id/EmailText"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="-37dp"
+        android:orientation="horizontal">
+
+
+        <RadioButton
+            android:id="@+id/studentradiobutton1"
+            android:layout_width="75dp"
+            android:layout_height="31dp"
+            android:text="1학년"
+            tools:ignore="MissingConstraints" />
+
+        <RadioButton
+            android:id="@+id/studentradiobutton2"
+            android:layout_width="75dp"
+            android:layout_height="31dp"
+            android:text="2학년"
+            tools:ignore="MissingConstraints" />
+
+        <RadioButton
+            android:id="@+id/studentradiobutton3"
+            android:layout_width="75dp"
+            android:layout_height="31dp"
+            android:text="3학년"
+            tools:ignore="MissingConstraints" />
+
+        <RadioButton
+            android:id="@+id/Teacherradiobutton"
+            android:layout_width="75dp"
+            android:layout_height="31dp"
+            android:text="교사" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/userGrade_radioGroup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-122dp"
+        android:text="회원가입"
+        tools:ignore="MissingConstraints,NotSibling"
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="623dp" />
+
+</RelativeLayout>

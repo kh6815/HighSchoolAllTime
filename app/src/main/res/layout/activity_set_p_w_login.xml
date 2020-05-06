@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SetPW_login">
+
+    <EditText
+        android:id="@+id/NewPWText"
+        android:layout_width="332dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="새 PW 입력"
+        android:inputType="textPassword" />
+
+
+    <EditText
+        android:id="@+id/NewPWCheckText"
+        android:layout_width="332dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="새 PW 확인"
+        android:inputType="textPassword"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/SetPWbutton"
+        android:layout_width="189dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:text="변경"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="422dp"
+        tools:ignore="MissingConstraints" />
+</LinearLayout>
