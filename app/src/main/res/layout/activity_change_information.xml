@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".ChangeInformation">
+
+    <TextView
+        android:id="@+id/TextView_ChInform_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="'userName'님의 정보"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:textSize="25sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textSize="30sp"></TextView>
+        <!--DB연동 예정-->
+        <EditText
+            android:id="@+id/Edittext_ChInform_Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="DB에 저장된 유저의 이름" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="학교"
+            android:textSize="30sp"/>
+
+        <EditText
+            android:id="@+id/Edittext_ChInform_School"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="DB에 저장된 학교 이름"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메일"
+            android:textSize="30sp"/>
+        <!--DB연동 예정-->
+        <EditText
+            android:id="@+id/Edittext_ChInform_Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="DB에 저장된 e-메일 주소"> </EditText>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="새 password"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/Edittext_ChInform_NewPW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DB에 저장된 PW"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="새 password 확인"/>
+
+    <EditText
+        android:id="@+id/Edittext_ChInform_IsNewPW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DB에 저장된 PW"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="학년"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:id="@+id/TextView_ChInform_userGrade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="DB에 저장된 학년"
+            android:textSize="30sp"/>
+    </LinearLayout>
+    <RadioGroup
+        android:layout_marginTop="20dp"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RadioGroup_ChInform_Grade">
+        <RadioButton
+            android:id="@+id/Radio_ChInform_Grade1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1학년"/>
+
+        <RadioButton
+            android:id="@+id/Radio_ChInform_Grade2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2학년"/>
+
+        <RadioButton
+            android:id="@+id/Radio_ChInform_Grade3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3학년"/>
+    </RadioGroup>
+    <Button
+        android:id="@+id/Button_ChInform_Update"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:textSize="25sp"/>
+
+</LinearLayout>

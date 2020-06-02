@@ -1,13 +1,9 @@
 package com.example.highschoolalltime;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import android.app.Application;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,13 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,20 +31,16 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class Notice_Board extends AppCompatActivity {
-
+public class Hot_Board extends AppCompatActivity {
     private ListView list;
     private Button submit;
     private Button cencel;
@@ -67,9 +57,9 @@ public class Notice_Board extends AppCompatActivity {
     //ArrayAdapter<String> adapter;
 
     String myJSON;
-    private static String TAG = "Notice_Board";
+    private static String TAG = "Hot_Board";
     //public static final String TAG = Notice_Board.class
-            //.getSimpleName();
+    //.getSimpleName();
     private static final String TAG_RESPONSE = "response";
     private static final String TAG_USERID = "userid";
     private static final String TAG_TITLE = "title";
@@ -81,14 +71,15 @@ public class Notice_Board extends AppCompatActivity {
 
     JSONArray peoples = null;
     ArrayList<HashMap<String, String>> personList;
-   // ArrayList<HashMap<String, String>> tempList;
+    List<String> data = new ArrayList<>();
+    // ArrayList<HashMap<String, String>> tempList;
 
     MyAdapter adapter;
     String userName,userGrade, userEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notice_board);
+        setContentView(R.layout.activity_hot__board);
         //데이터베이스에 저장된 내용20개만 먼저 가지고 오고 새로고침이 되면 데이터를 더 가져오기
         //newShow();
         //new BackgroundTask().execute();
@@ -98,29 +89,19 @@ public class Notice_Board extends AppCompatActivity {
         userName = ((use_user)this.getApplication()).getUserName();
         userGrade = ((use_user)this.getApplication()).getUserGrade();
         userEmail = ((use_user)this.getApplication()).getUserEmail();
-        WhatBoard = "Notice_Board";
+        WhatBoard = "Hot_Board";
         list = (ListView) findViewById(R.id.notice_board_list);
         list.setFocusable(false);
 
         personList = new ArrayList<HashMap<String, String>>();
-        getData("http://wkwjsrjekffk.dothome.co.kr/BoardSet1.php"); //php파일이름 작성
-        btn = (Button) findViewById(R.id.Addbutton);
-        btn.setFocusable(false);
+        getData("http://wkwjsrjekffk.dothome.co.kr/HotBoardSet.php"); //php파일이름 작성
         list.setAdapter(adapter);
-
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                show();
-            }
-        });
 
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
-               // Toast.makeText(getApplicationContext(),"클릭",Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(),"클릭",Toast.LENGTH_SHORT).show();
                 MyItem item = (MyItem) parent.getItemAtPosition(position);
 
                 String userIDStr = item.getuserID();
@@ -130,7 +111,7 @@ public class Notice_Board extends AppCompatActivity {
                 String hotCount = item.getHotCount();
                 String hotclickUser = item.getHotClickUser();
 
-                Intent intent = new Intent(Notice_Board.this, Clickboard.class );
+                Intent intent = new Intent(Hot_Board.this, Clickboard.class );
 
                 intent.putExtra("userID", userIDStr);
                 intent.putExtra("title", titleStr);
@@ -229,14 +210,13 @@ public class Notice_Board extends AppCompatActivity {
     }
 
     private void getData(String url) {
-        class GetDataJSON extends AsyncTask<String,Void,String>{
+        class GetDataJSON extends AsyncTask<String,Void,String> {
 
             @Override
             protected String doInBackground(String... params) {
                 String uri = params[0];
                 String school = params[1];
-                String board = params[2];
-                String postParameters = "userSchool=" + school + "&Whatboard=" + board;; // userSchool, Whatboard 필요함.
+                String postParameters = "userSchool=" + school;; // userSchool, Whatboard 필요함.
 
                 BufferedReader bufferedReader = null;
                 try {
@@ -294,96 +274,7 @@ public class Notice_Board extends AppCompatActivity {
             }
         }
         GetDataJSON g = new GetDataJSON();
-        g.execute(url,userSchool,WhatBoard);
-    }
-
-    void show() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Notice_Board.this);
-        LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.addboard, null);
-        builder.setView(view);
-
-        submit = (Button) view.findViewById(R.id.buttonSubmit);
-        cencel = (Button) view.findViewById(R.id.buttonCanlcel);
-        imageView1 = (ImageView)findViewById(R.id.imageView1);
-        imageView2 = (ImageView)findViewById(R.id.imageView2);
-        imageView3 = (ImageView)findViewById(R.id.imageView3);
-        imageView4 = (ImageView)findViewById(R.id.imageView4);
-        imageView5 = (ImageView)findViewById(R.id.imageView5);
-        imageView6 = (ImageView)findViewById(R.id.imageView6);
-        imageView7 = (ImageView)findViewById(R.id.imageView7);
-        imageView8 = (ImageView)findViewById(R.id.imageView8);
-        imageView9 = (ImageView)findViewById(R.id.imageView9);
-        imageView10 = (ImageView)findViewById(R.id.imageView10);
-
-        title = (EditText) view.findViewById(R.id.EditText_title);
-        content = (EditText) view.findViewById(R.id.EditText_content);
-
-
-
-        dialog = builder.create();
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String title_temp= title.getText().toString();
-                String content_temp = content.getText().toString();
-                String comments = "";
-                String Whatboard= "Notice_Board";
-                String hotCount = 0 + "";
-                String hotclickUser = userID +"/";
-                System.out.println(title_temp);
-
-                // 현재시간을 msec 으로 구한다.
-                long now = System.currentTimeMillis();
-                // 현재시간을 date 변수에 저장한다.
-                Date date = new Date(now);
-                // 시간을 나타냇 포맷을 정한다 ( yyyy/MM/dd 같은 형태로 변형 가능 )
-                SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                // nowDate 변수에 값을 저장한다.
-                String formatDate = sdfNow.format(date);
-
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success = jsonObject.getBoolean("success");
-                            if(success){//게시판 글작성 성공
-                                Toast.makeText(getApplicationContext(),"게시판 글 작성 성공하셨습니다.",Toast.LENGTH_SHORT).show();
-
-                                Intent intent = getIntent();
-                                finish();
-                                startActivity(intent);
-                                //new BackgroundTask().execute();
-                                /*
-                                Intent intent = new Intent(Notice_Board.this, Notice_Board.class );
-                                finish();
-                                startActivity(intent);*/
-                            }
-                            else{ //게시판 글작성 실패
-                                Toast.makeText(getApplicationContext(),"게시판 글 작성 실패하셨습니다.",Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                //서버로 Volley를 이용해서 요청을 함.
-                RegisterRequest_Board registerRequest_board = new RegisterRequest_Board(userID, userSchool ,title_temp, content_temp, comments,Whatboard, formatDate, hotCount, hotclickUser,responseListener);
-                RequestQueue queue = Volley.newRequestQueue(Notice_Board.this);
-                queue.add(registerRequest_board);
-                dialog.dismiss();
-            }
-        });
-
-        cencel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
+        g.execute(url,userSchool);
     }
 }
+

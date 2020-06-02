@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cafe_dialog_title"
+        android:text="오늘의 급식"
+        android:textSize="40sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cafe_dialog_menu"
+        android:text="급식을 추가하세요"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cafe_dialog_edittext"
+        android:inputType="textEmailAddress"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cafe_dialog_dropbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소" />
+
+        <Button
+            android:id="@+id/cafe_dialog_addbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="추가" />
+    </LinearLayout>
+
+</LinearLayout>

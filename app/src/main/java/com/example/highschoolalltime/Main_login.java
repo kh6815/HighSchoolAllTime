@@ -24,7 +24,7 @@ public class Main_login extends AppCompatActivity {
     Button ID_PWbutton;
     Button Joinbutton;
 
-    EditText LoginIDText, LoginPasswordText;
+    EditText LoginSchoolnameText, LoginIDText, LoginPasswordText;
     private Button btn_login;
 
     @Override
@@ -36,7 +36,7 @@ public class Main_login extends AppCompatActivity {
         ID_PWbutton = findViewById(R.id.ID_PWbutton);
         Joinbutton = findViewById(R.id.Joinbutton);
 
-
+        LoginSchoolnameText = findViewById(R.id.LoginSchoolnameText);
         LoginIDText = findViewById(R.id.LoginIDText);
         LoginPasswordText = findViewById(R.id.LoginPasswordText);
         btn_login = findViewById(R.id.btn_login);
@@ -61,8 +61,10 @@ public class Main_login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //EditText에 현재 입력되어 있는 값을 get해온다.
+
                 String userID = LoginIDText.getText().toString();
                 String userPassword = LoginPasswordText.getText().toString();
+                String userSchool= LoginSchoolnameText.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -71,24 +73,31 @@ public class Main_login extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
                             if(success){//로그인 성공
-                                //String userSchoolname = jsonObject.getString("userSchoolname ");
                                 String userID = jsonObject.getString("userID");
                                 String userPassword	= jsonObject.getString("userPassword");
+                                String userSchool = jsonObject.getString("userSchool");
+                                String userName= jsonObject.getString("userName");
+                                String userEmail = jsonObject.getString("userEmail");
+                                String userGrade = jsonObject.getString("userGrade");
+
                                 System.out.println(userID);
                                 System.out.println(userPassword);
-                                //userID = "rkdgus"; // 데이터값 불러오기 해야되는뎅..
-                               // String userName = jsonObject.getString("userName");
-                               // String userEmail = jsonObject.getString("userEmail");
-                                //String userGrade = jsonObject.getString("userGrade");
+                                System.out.println(userSchool);
+                                System.out.println(userName);
+                                System.out.println(userEmail);
+                                System.out.println(userGrade);
+
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하셨습니다.",Toast.LENGTH_SHORT).show();
+                                String boardChage = "0";
                                 Intent intent = new Intent(Main_login.this, MainFrame.class );
 
-                                intent.putExtra("userID", userID);
-                               // intent.putExtra("userSchoolname", userSchoolname);
-                                //intent.putExtra("userPassword", userPassword);
-                               // intent.putExtra("userName", userName);
-                               // intent.putExtra("userEmail", userEmail);
-                               // intent.putExtra("userGrade", userGrade);
+                                 //intent.putExtra("boardChange", boardChage);
+                                 intent.putExtra("userID", userID);
+                                 intent.putExtra("userPassword", userPassword);
+                                 intent.putExtra("userSchool", userSchool);
+                                 intent.putExtra("userName", userName);
+                                 intent.putExtra("userEmail", userEmail);
+                                 intent.putExtra("userGrade", userGrade);
 
                                 startActivity(intent);
                             }
@@ -101,7 +110,7 @@ public class Main_login extends AppCompatActivity {
                         }
                     }
                 };
-                LoginRequest loginRequest = new LoginRequest(userID, userPassword, responseListener);
+                LoginRequest loginRequest = new LoginRequest(userID, userPassword, userSchool ,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(Main_login.this);
                 queue.add(loginRequest);
             }

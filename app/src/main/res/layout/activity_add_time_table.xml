@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTimeTableActivity">
+
+    <TableLayout
+        android:id="@+id/Time_Table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/table_outside"
+        android:stretchColumns="*"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"><!--table_outside로 시간표 선 색상 지정-->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/table_inside_schema">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside_schema"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text=" "
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside_schema"
+                android:gravity="center"
+                android:text="월"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside_schema"
+                android:gravity="center"
+                android:text="화"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside_schema"
+                android:gravity="center"
+                android:text="수"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside_schema"
+                android:gravity="center"
+                android:text="목"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside_schema"
+                android:gravity="center"
+                android:text="금"
+                android:textSize="25sp" />
+
+        </TableRow><!--TableRow로 시간표 틀 작성. background:table_inside_schema로 배경색 지정-->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_result_m1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_tu1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_w1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_t1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_f1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+        </TableRow><!--내용이 들어갈 곳으로 배경색을 다르게 지정함-->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text="2"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_result_m2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_tu2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_w2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_t2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_f2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text="3"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_result_m3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_tu3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_w3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_t3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_f3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text="4"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_result_m4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_tu4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_w4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_t4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_f4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text="5"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_result_m5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_tu5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_w5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_t5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_f5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text="6"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_result_m6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_tu6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_w6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_t6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_f6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text="7"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_result_m7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_tu7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_w7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_t7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_result_f7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_inside"
+                android:gravity="center"
+                android:text=" "
+                android:textSize="15sp" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:gravity="left">
+
+        <Button
+            android:id="@+id/btn_del"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_marginRight="5dp"
+            android:text="Del" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:gravity="right">
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:text="Ins" /><!--alignParent로 오른쪽 위에 버튼 생성-->
+    </LinearLayout>
+    <!--각 화면으로 이동할 하단 버튼 생성-->
+
+</RelativeLayout>

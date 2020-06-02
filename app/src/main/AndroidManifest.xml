@@ -3,6 +3,7 @@
     package="com.example.highschoolalltime">
 
     <application
+        android:name=".use_user"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,17 +11,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainFrame" />
-        <activity android:name=".Notice_Board" />
-        <activity android:name=".Noticeboard" />
-        <activity android:name=".Activity_Home" />
-        <activity android:name=".Main_login">
+        <activity android:name=".AddTimeTableActivity"></activity>
+        <activity android:name=".Loading">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ChangeInformation" />
+        <activity android:name=".withdraw" />
+        <activity android:name=".Mypage" />
+        <activity android:name=".Cafeteria" />
+        <activity android:name=".Hot_Board" />
+        <activity android:name=".Free_Board" />
+        <activity
+            android:name=".Clickboard"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="adjustResize|adjustPan" />
+        <activity android:name=".MainFrame" />
+        <activity android:name=".Notice_Board" />
+        <activity android:name=".Noticeboard" />
+        <activity android:name=".Activity_Home" />
+        <activity android:name=".Main_login" />
         <activity android:name=".Find_IDPW_login" />
         <activity android:name=".Join_login" />
         <activity android:name=".SetPW_login" />

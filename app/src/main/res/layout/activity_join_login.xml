@@ -21,7 +21,7 @@
 
 
     <EditText
-        android:id="@+id/SchoolNameText"
+        android:id="@+id/SchoolText"
         android:layout_width="323dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/JoinView"
@@ -38,8 +38,8 @@
         android:id="@+id/IDText"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/SchoolNameText"
-        android:layout_alignBottom="@id/SchoolNameText"
+        android:layout_alignLeft="@id/SchoolText"
+        android:layout_alignBottom="@id/SchoolText"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="0dp"
         android:layout_marginBottom="-51dp"
@@ -54,8 +54,8 @@
         android:id="@+id/IDCheckbutton"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/SchoolNameText"
-        android:layout_alignBottom="@id/SchoolNameText"
+        android:layout_alignRight="@id/SchoolText"
+        android:layout_alignBottom="@id/SchoolText"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="-50dp"

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
+
+
+    <Button
+        android:id="@+id/buttonCanlcel"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="-258dp"
+        android:layout_toLeftOf="@id/textview_title_write"
+        android:text="취소" />
+
+    <TextView
+        android:id="@+id/textview_title_write"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="댓글"
+        android:textSize="40sp" />
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:layout_toRightOf="@id/textview_title_write"
+        android:text="수정"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="129dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/textview_title_write"
+        android:text="수정" />
+
+    <EditText
+        android:id="@+id/EditText_comment"
+        android:layout_width="388dp"
+        android:layout_height="650dp"
+        android:layout_below="@id/textview_title_write"
+        android:layout_marginTop="-4dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="내용"
+        android:textSize="15sp" />
+
+
+</RelativeLayout>

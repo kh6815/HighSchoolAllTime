@@ -4,23 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Notice_Board"
-    android:id="@+id/Notice_Borad_activity">
-
+    tools:context=".Hot_Board"
+    android:orientation="vertical">
 
     <ListView
         android:id="@+id/notice_board_list"
         android:layout_width="match_parent"
-        android:layout_height="669dp" />
-
-    <Button
-        android:id="@+id/Addbutton"
-        android:layout_width="76dp"
-        android:layout_height="61dp"
-        android:layout_gravity="center"
-        android:text="+"
-        android:textSize="25dp"
-        android:focusable="false" />
-
+        android:layout_height="match_parent" />
 </LinearLayout>

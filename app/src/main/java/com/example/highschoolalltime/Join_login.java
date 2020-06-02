@@ -28,7 +28,7 @@ import org.json.JSONObject;
 
 public class Join_login extends AppCompatActivity {
 
-    private EditText SchoolNameText, IDText, PasswordText, NameText, EmailText, password_CheckText;
+    private EditText IDText, PasswordText, NameText, EmailText, password_CheckText, SchoolText;
     private RadioButton selbtn;
     private Button btn_register, IDCheckbutton;
     private ImageView passwordCheckImage;
@@ -44,7 +44,7 @@ public class Join_login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_login);
 
-        SchoolNameText = findViewById(R.id.SchoolNameText);
+        SchoolText = findViewById(R.id.SchoolText);
         IDText = findViewById(R.id.IDText);
         PasswordText = findViewById(R.id.LoginPasswordText);
         password_CheckText = findViewById(R.id.password_CheckText);
@@ -153,14 +153,14 @@ public class Join_login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"비밀번호가 일치 하지 않습니다.",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(SchoolNameText.getText().toString().equals("") || IDText.getText().toString().equals("") || validate == false || PasswordText.getText().toString().equals("") || password_CheckText.getText().toString().equals("")
+                if(SchoolText.getText().toString().equals("") || IDText.getText().toString().equals("") || validate == false || PasswordText.getText().toString().equals("") || password_CheckText.getText().toString().equals("")
                 || PWcheck == 0 || NameText.getText().toString().equals("") || EmailText.getText().toString().equals("") || gradeCheck == 0 ){
                     Toast.makeText(getApplicationContext(),"가입정보를 정확히 확인하십시오(중복확인, 비밀번호 5자리 이상)",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String userSchoolname = SchoolNameText.getText().toString();
                 String userID = IDText.getText().toString();
                 String userPassword = PasswordText.getText().toString();
+                String userSchool = SchoolText.getText().toString();
                 String userName = NameText.getText().toString();
                 String userEmail = EmailText.getText().toString();
                 String userGrade = temp; //라디오 버튼 가능하게 바꿔야함.
@@ -187,7 +187,7 @@ public class Join_login extends AppCompatActivity {
                     }
                 };
                 //서버로 Volley를 이용해서 요청을 함.
-                RegisterRequest registerRequest = new RegisterRequest(userSchoolname, userID, userPassword, userName, userEmail, userGrade, responseListener);
+                RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userSchool,userName, userEmail, userGrade,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(Join_login.this);
                 queue.add(registerRequest);
             }

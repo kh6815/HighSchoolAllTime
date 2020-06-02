@@ -12,10 +12,18 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/ic_launcher_foreground"
+        android:layout_marginTop="120dp"
+        app:srcCompat="@drawable/icon"
         tools:ignore="MissingConstraints,VectorDrawableCompat" />
 
+    <EditText
+        android:id="@+id/LoginSchoolnameText"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:hint="학교이름을 입력하세요"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/LoginIDText"
@@ -29,7 +37,7 @@
 
     <EditText
         android:id="@+id/LoginPasswordText"
-        android:layout_width="308dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"

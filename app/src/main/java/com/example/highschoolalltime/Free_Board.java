@@ -49,7 +49,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class Notice_Board extends AppCompatActivity {
+
+public class Free_Board extends AppCompatActivity {
 
     private ListView list;
     private Button submit;
@@ -67,9 +68,9 @@ public class Notice_Board extends AppCompatActivity {
     //ArrayAdapter<String> adapter;
 
     String myJSON;
-    private static String TAG = "Notice_Board";
+    private static String TAG = "Free_Board";
     //public static final String TAG = Notice_Board.class
-            //.getSimpleName();
+    //.getSimpleName();
     private static final String TAG_RESPONSE = "response";
     private static final String TAG_USERID = "userid";
     private static final String TAG_TITLE = "title";
@@ -81,14 +82,15 @@ public class Notice_Board extends AppCompatActivity {
 
     JSONArray peoples = null;
     ArrayList<HashMap<String, String>> personList;
-   // ArrayList<HashMap<String, String>> tempList;
+    List<String> data = new ArrayList<>();
+    // ArrayList<HashMap<String, String>> tempList;
 
     MyAdapter adapter;
     String userName,userGrade, userEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notice_board);
+        setContentView(R.layout.activity_free__board);
         //데이터베이스에 저장된 내용20개만 먼저 가지고 오고 새로고침이 되면 데이터를 더 가져오기
         //newShow();
         //new BackgroundTask().execute();
@@ -98,7 +100,7 @@ public class Notice_Board extends AppCompatActivity {
         userName = ((use_user)this.getApplication()).getUserName();
         userGrade = ((use_user)this.getApplication()).getUserGrade();
         userEmail = ((use_user)this.getApplication()).getUserEmail();
-        WhatBoard = "Notice_Board";
+        WhatBoard = "Free_Board";
         list = (ListView) findViewById(R.id.notice_board_list);
         list.setFocusable(false);
 
@@ -120,7 +122,7 @@ public class Notice_Board extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
-               // Toast.makeText(getApplicationContext(),"클릭",Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(),"클릭",Toast.LENGTH_SHORT).show();
                 MyItem item = (MyItem) parent.getItemAtPosition(position);
 
                 String userIDStr = item.getuserID();
@@ -130,7 +132,7 @@ public class Notice_Board extends AppCompatActivity {
                 String hotCount = item.getHotCount();
                 String hotclickUser = item.getHotClickUser();
 
-                Intent intent = new Intent(Notice_Board.this, Clickboard.class );
+                Intent intent = new Intent(Free_Board.this, Clickboard.class );
 
                 intent.putExtra("userID", userIDStr);
                 intent.putExtra("title", titleStr);
@@ -298,7 +300,7 @@ public class Notice_Board extends AppCompatActivity {
     }
 
     void show() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Notice_Board.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Free_Board.this);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.addboard, null);
         builder.setView(view);
@@ -328,7 +330,7 @@ public class Notice_Board extends AppCompatActivity {
                 String title_temp= title.getText().toString();
                 String content_temp = content.getText().toString();
                 String comments = "";
-                String Whatboard= "Notice_Board";
+                String Whatboard= "Free_Board";
                 String hotCount = 0 + "";
                 String hotclickUser = userID +"/";
                 System.out.println(title_temp);
@@ -371,7 +373,7 @@ public class Notice_Board extends AppCompatActivity {
                 };
                 //서버로 Volley를 이용해서 요청을 함.
                 RegisterRequest_Board registerRequest_board = new RegisterRequest_Board(userID, userSchool ,title_temp, content_temp, comments,Whatboard, formatDate, hotCount, hotclickUser,responseListener);
-                RequestQueue queue = Volley.newRequestQueue(Notice_Board.this);
+                RequestQueue queue = Volley.newRequestQueue(Free_Board.this);
                 queue.add(registerRequest_board);
                 dialog.dismiss();
             }

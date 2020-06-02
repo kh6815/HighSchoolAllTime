@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Notice_Board"
-    android:id="@+id/Notice_Borad_activity">
-
+    tools:context=".Free_Board"
+    android:orientation="vertical">
 
     <ListView
         android:id="@+id/notice_board_list"
@@ -22,5 +20,4 @@
         android:text="+"
         android:textSize="25dp"
         android:focusable="false" />
-
 </LinearLayout>
