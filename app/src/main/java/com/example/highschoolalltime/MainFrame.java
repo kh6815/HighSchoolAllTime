@@ -88,6 +88,9 @@ public class MainFrame extends AppCompatActivity {
 
         switch (n) {
             case 0 : //홈화면
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("userID", userID);
+                activity_home.setArguments(bundle2);
                 ft.replace(R.id.main_frame, activity_home);
                 ft.commit();
                 break;

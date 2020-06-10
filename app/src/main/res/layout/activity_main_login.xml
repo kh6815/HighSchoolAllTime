@@ -4,17 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Main_login">
+    tools:context=".Main_login"
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="120dp"
-        app:srcCompat="@drawable/icon"
-        tools:ignore="MissingConstraints,VectorDrawableCompat" />
+        android:layout_marginTop="90dp"
+        android:gravity="center"
+        android:text="Sign up "
+        android:textSize="60dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="223dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:text="school all time"
+        android:textSize="30dp" />
 
     <EditText
         android:id="@+id/LoginSchoolnameText"
@@ -22,7 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="35dp"
-        android:hint="학교이름을 입력하세요"
+        android:background="@drawable/text_shape"
+        android:paddingLeft="15dp"
+        android:hint="School Name"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -31,9 +45,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:hint="아이디를 입력하세요"
+        android:paddingLeft="15dp"
+        android:background="@drawable/text_shape"
+        android:hint="ID"
         tools:ignore="MissingConstraints" />
-
 
     <EditText
         android:id="@+id/LoginPasswordText"
@@ -41,46 +56,64 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:hint="비밀번호를 입력하세요"
-        tools:ignore="MissingConstraints"
-        android:inputType="textPassword"/>
+        android:paddingLeft="15dp"
+        android:background="@drawable/text_shape"
+        android:hint="PW"
+        android:inputType="textPassword"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="164dp"
+        android:layout_height="27dp"
+        android:layout_above="@+id/btn_login"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginTop="10dp"
+        android:text="automatic login"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="174dp"
-        android:layout_height="50dp"
+        android:layout_width="313dp"
+        android:layout_height="48dp"
         android:layout_alignTop="@id/LoginPasswordText"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="로그인"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_shape"
+        android:text="LOGIN"
         android:textSize="24sp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="566dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/ID_PWbutton"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="10dp"
+            android:layout_width="137dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="77dp"
-            android:text="ID/PW찾기"
-            android:textSize="24sp"
-            tools:ignore="MissingConstraints" />
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button_shape2"
+            app:srcCompat="@android:drawable/ic_menu_search" />
 
         <Button
             android:id="@+id/Joinbutton"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="77dp"
-            android:text="회원가입"
+            android:layout_width="163dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_shape1"
+            android:text="to join"
+            android:textColorLink="#FFFFFF"
             android:textSize="24sp"
             tools:ignore="MissingConstraints" />
+
     </LinearLayout>
 
 </LinearLayout>

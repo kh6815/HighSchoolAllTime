@@ -236,7 +236,7 @@ public class Notice_Board extends AppCompatActivity {
                 String uri = params[0];
                 String school = params[1];
                 String board = params[2];
-                String postParameters = "userSchool=" + school + "&Whatboard=" + board;; // userSchool, Whatboard 필요함.
+                String postParameters = "userSchool=" + school + "&Whatboard=" + board;// userSchool, Whatboard 필요함.
 
                 BufferedReader bufferedReader = null;
                 try {

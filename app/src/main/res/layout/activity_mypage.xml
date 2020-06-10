@@ -19,36 +19,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="10dp"
-        android:gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         >
 
         <Button
             android:id="@+id/Button_Mypage_Logout"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape"
             android:text="로그아웃"
-            android:textSize="25sp"></Button>
+            android:textSize="24sp"></Button>
 
         <Button
             android:id="@+id/Button_Mypage_Withdraw"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape1"
             android:text="회원탈퇴"
-            android:textSize="25sp"></Button>
+            android:textSize="24sp"></Button>
 
         <Button
             android:id="@+id/Button_Mypage_Change"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="정보변경"
-            android:textSize="25sp"></Button>
+            android:background="@drawable/button_shape2"
+            android:textSize="24sp"></Button>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:text="내가 쓴 글"
         android:textSize="20sp"></TextView>
 

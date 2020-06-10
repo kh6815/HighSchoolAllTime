@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -73,6 +75,9 @@ public class Mypage extends Fragment {
     ArrayList<HashMap<String, String>> commentsList;
     commentAdapter adapter1;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +86,9 @@ public class Mypage extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_mypage, container, false);//메인화면에 userid를 계속 띄우주기 위함.
+
+        pref = getActivity().getSharedPreferences("mine", Context.MODE_PRIVATE);
+        editor = pref.edit();
 
         //activity_mypage애서 txtview와 button을 가져온다.
         TextView txt_showID = view.findViewById(R.id.TextView_Mypage_ShowID);
@@ -117,6 +125,11 @@ public class Mypage extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Main_login.class);
+                editor.clear();
+                editor.commit();
+                //editor.remove("userID");
+                //editor.remove("userPassword");
+                //editor.remove("userSchool");
                 getActivity().finish();
                 startActivity(intent); //액티비티 이동
             }
@@ -372,8 +385,11 @@ public class Mypage extends Fragment {
             protected String doInBackground(String... params) {
                 String uri = params[0];
                 String userid = params[1];
+                String content_userSchool = params[2];
 
-                String postParameters = "userid=" + userid;
+                String postParameters = "userid=" + userid + "&content_userSchool=" + content_userSchool;
+                //String postParameters = "userid=" + userid;
+                System.out.println(postParameters);
 
                 BufferedReader bufferedReader = null;
                 try {
@@ -431,12 +447,13 @@ public class Mypage extends Fragment {
             }
         }
         GetDataJSON g = new GetDataJSON();
-        g.execute(url, userID);
+        g.execute(url, userID, userSchool);
     }
     protected void showList1(){
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             commentsArray = jsonObj.getJSONArray(TAG_RESPONSE);
+            System.out.println(commentsArray);
 
             for(int i = 0; i<commentsArray.length(); i++){
                 JSONObject c = commentsArray.getJSONObject(i);

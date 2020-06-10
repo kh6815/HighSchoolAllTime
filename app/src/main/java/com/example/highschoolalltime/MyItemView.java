@@ -32,10 +32,26 @@ public class MyItemView extends LinearLayout {
     }
     public void setuserID(String userID){}
     public void setTitle(String title){
-        textView1.setText(title);
+        String temp = null;
+        if(title.length() >  9){
+            temp = title.substring(0, 8) + "...";
+        }
+        else{
+            temp = title;
+        }
+
+        textView1.setText(temp);
     }
     public void setContent(String content){
-        textView2.setText(content);
+        String temp = null;
+        if(content.length() >  9){
+            temp = content.substring(0, 8) + "...";
+        }
+        else{
+            temp = content;
+        }
+
+        textView2.setText(temp);
     }
     public void setHotCount(String hotcount){
         textView3.setText(hotcount);

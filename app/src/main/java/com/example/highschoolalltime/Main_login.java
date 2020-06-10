@@ -2,13 +2,17 @@ package com.example.highschoolalltime;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,17 +25,24 @@ import org.json.JSONObject;
 
 
 public class Main_login extends AppCompatActivity {
-    Button ID_PWbutton;
+    ImageButton ID_PWbutton;
     Button Joinbutton;
 
     EditText LoginSchoolnameText, LoginIDText, LoginPasswordText;
     private Button btn_login;
+    CheckBox checkBox;
+    boolean checkbox_check = false;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login);
+
+        pref = getSharedPreferences("mine",MODE_PRIVATE);
+        editor = pref.edit();
 
         ID_PWbutton = findViewById(R.id.ID_PWbutton);
         Joinbutton = findViewById(R.id.Joinbutton);
@@ -40,6 +51,7 @@ public class Main_login extends AppCompatActivity {
         LoginIDText = findViewById(R.id.LoginIDText);
         LoginPasswordText = findViewById(R.id.LoginPasswordText);
         btn_login = findViewById(R.id.btn_login);
+        checkBox = findViewById(R.id.checkBox);
 
         ID_PWbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +68,13 @@ public class Main_login extends AppCompatActivity {
             }
         });
 
+
+        checkBox.setOnClickListener(new CheckBox.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkbox_check = true;
+            }
+        });
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +106,15 @@ public class Main_login extends AppCompatActivity {
                                 System.out.println(userEmail);
                                 System.out.println(userGrade);
 
+                                if(checkbox_check){
+                                    editor.putString("userSchool", userSchool);
+                                    editor.putString("userID", userID);
+                                    editor.putString("userPassword", userPassword);
+                                    editor.putBoolean("checkbox", true);
+
+                                    editor.commit();
+                                }
+
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하셨습니다.",Toast.LENGTH_SHORT).show();
                                 String boardChage = "0";
                                 Intent intent = new Intent(Main_login.this, MainFrame.class );
@@ -99,6 +127,7 @@ public class Main_login extends AppCompatActivity {
                                  intent.putExtra("userEmail", userEmail);
                                  intent.putExtra("userGrade", userGrade);
 
+                                 finish();
                                 startActivity(intent);
                             }
                             else{ //로그인 실패

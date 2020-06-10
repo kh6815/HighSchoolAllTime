@@ -510,26 +510,27 @@
 
         <Button
             android:id="@+id/btn_del"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/button_shape"
             android:text="Del" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="119dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:orientation="horizontal"
-        android:gravity="right">
+        android:gravity="right"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
+            android:background="@drawable/button_shape1"
             android:text="Ins" /><!--alignParent로 오른쪽 위에 버튼 생성-->
     </LinearLayout>
     <!--각 화면으로 이동할 하단 버튼 생성-->
