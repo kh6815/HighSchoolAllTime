@@ -11,7 +11,8 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="25dp"
         android:stretchColumns="*">
 
         <TableRow
@@ -21,9 +22,9 @@
             <!--지난달 버튼-->
             <Button
                 android:id="@+id/gv_calendar_activity_b_last"
-                android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
                 android:textSize="20sp" />
             <!--달력제목-->
             <TextView
@@ -33,13 +34,15 @@
                 android:gravity="center"
                 android:text="몇년 몇월"
                 android:textSize="37sp" />
-            <!--다음달 버튼-->
+
             <Button
                 android:id="@+id/gv_calendar_activity_b_next"
-                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"/>
+                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:textSize="20sp" />
+
+            <!--다음달 버튼-->
 
         </TableRow>
     </TableLayout>
