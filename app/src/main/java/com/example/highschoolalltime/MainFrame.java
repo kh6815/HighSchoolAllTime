@@ -90,6 +90,7 @@ public class MainFrame extends AppCompatActivity {
             case 0 : //홈화면
                 Bundle bundle2 = new Bundle();
                 bundle2.putString("userID", userID);
+                bundle2.putString("userSchool", userSchool);
                 activity_home.setArguments(bundle2);
                 ft.replace(R.id.main_frame, activity_home);
                 ft.commit();

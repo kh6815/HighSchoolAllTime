@@ -307,6 +307,7 @@ public class Free_Board extends AppCompatActivity {
 
         submit = (Button) view.findViewById(R.id.buttonSubmit);
         cencel = (Button) view.findViewById(R.id.buttonCanlcel);
+        /*
         imageView1 = (ImageView)findViewById(R.id.imageView1);
         imageView2 = (ImageView)findViewById(R.id.imageView2);
         imageView3 = (ImageView)findViewById(R.id.imageView3);
@@ -316,7 +317,7 @@ public class Free_Board extends AppCompatActivity {
         imageView7 = (ImageView)findViewById(R.id.imageView7);
         imageView8 = (ImageView)findViewById(R.id.imageView8);
         imageView9 = (ImageView)findViewById(R.id.imageView9);
-        imageView10 = (ImageView)findViewById(R.id.imageView10);
+        imageView10 = (ImageView)findViewById(R.id.imageView10);*/
 
         title = (EditText) view.findViewById(R.id.EditText_title);
         content = (EditText) view.findViewById(R.id.EditText_content);

@@ -20,7 +20,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +39,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,7 +58,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,6 +74,12 @@
             android:layout_marginLeft="10dp"
             android:text="DB에 저장된 e-메일 주소"> </EditText>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,7 +91,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="DB에 저장된 PW"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,10 +109,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="DB에 저장된 PW"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -112,36 +129,38 @@
             android:gravity="right"
             android:text="DB에 저장된 학년"
             android:textSize="30sp"/>
+
+        <RadioGroup
+            android:layout_marginTop="20dp"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RadioGroup_ChInform_Grade">
+            <RadioButton
+                android:id="@+id/Radio_ChInform_Grade1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1학년"/>
+
+            <RadioButton
+                android:id="@+id/Radio_ChInform_Grade2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2학년"/>
+
+            <RadioButton
+                android:id="@+id/Radio_ChInform_Grade3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3학년"/>
+        </RadioGroup>
     </LinearLayout>
-    <RadioGroup
-        android:layout_marginTop="20dp"
-        android:layout_gravity="right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/RadioGroup_ChInform_Grade">
-        <RadioButton
-            android:id="@+id/Radio_ChInform_Grade1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1학년"/>
-
-        <RadioButton
-            android:id="@+id/Radio_ChInform_Grade2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2학년"/>
-
-        <RadioButton
-            android:id="@+id/Radio_ChInform_Grade3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3학년"/>
-    </RadioGroup>
     <Button
         android:id="@+id/Button_ChInform_Update"
-        android:layout_gravity="center"
+        android:layout_gravity="center|bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_shape1"
         android:text="확인"
         android:textSize="25sp"/>
 

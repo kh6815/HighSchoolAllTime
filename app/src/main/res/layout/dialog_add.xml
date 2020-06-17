@@ -29,9 +29,10 @@
         android:id="@+id/edittextSubject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_marginBottom="10dp"
         android:inputType="textEmailAddress"
+        android:maxLength="10"
+        android:maxLines="1"
         android:hint="과목명 입력"
         android:layout_below="@+id/textviewSubject">//과목 명을 입력받을 EditText
 
@@ -76,16 +77,23 @@
         android:layout_marginBottom="10dp"
         android:inputType="textPassword"
         android:layout_below="@+id/textviewTime" />//수강시간 선택 Spiner
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edittextTime"
-        android:gravity="right">
+        android:layout_gravity="right"
+        android:layout_alignParentEnd="true"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/buttonSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edittextTime"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape1"
+            android:layout_marginVertical="5dp"
             android:gravity="center"
             android:text="확인" />
 
@@ -94,6 +102,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edittextTime"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape2"
             android:text="취소" />//android:layout_below를 이용해 순차적으로 배열함
     </LinearLayout>
 

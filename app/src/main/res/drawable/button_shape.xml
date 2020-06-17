@@ -14,16 +14,17 @@
     <selector>
         <item android:state_pressed="true">
             <shape>
-                <solid android:color="#FF6076A7"/>
+                <solid android:color="#E4090F"/>
                 <corners android:radius="10dp"/>
             </shape>
         </item>
 
         <item android:state_pressed="false">
             <shape>
-                <solid android:color="#AC6076A7"/>
+                <solid android:color="#FF6076A7"/>
                 <corners android:radius="10dp"/>
             </shape>
         </item>
     </selector>
+
 </shape>

@@ -8,7 +8,7 @@
     tools:context=".SetPW_login">
 
     <EditText
-        android:id="@+id/NewPWText"
+        android:id="@+id/ET_SetPW_PassWord"
         android:layout_width="332dp"
         android:layout_height="64dp"
         android:layout_marginTop="50dp"
@@ -19,7 +19,7 @@
 
 
     <EditText
-        android:id="@+id/NewPWCheckText"
+        android:id="@+id/ET_SetPW_IsPassWord"
         android:layout_width="332dp"
         android:layout_height="64dp"
         android:layout_marginTop="30dp"
@@ -30,12 +30,13 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/SetPWbutton"
+        android:id="@+id/Btn_SetPW"
         android:layout_width="189dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:text="변경"
+        android:background="@drawable/button_shape4"
         tools:layout_editor_absoluteX="110dp"
         tools:layout_editor_absoluteY="422dp"
         tools:ignore="MissingConstraints" />

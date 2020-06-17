@@ -133,13 +133,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="오늘의 급식"
+        android:text="오늘의 일정"
         android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_cafe_today"
-        android:text="급식이 없습니다." />
+        android:id="@+id/tv_schedule_today"
+        android:text="일정이 없습니다." />
+
 
 </LinearLayout>

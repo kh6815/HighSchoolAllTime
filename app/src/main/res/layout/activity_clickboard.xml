@@ -9,8 +9,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="3">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -20,10 +21,14 @@
             tools:ignore="VectorDrawableCompat" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
@@ -33,55 +38,74 @@
 
             <TextView
                 android:id="@+id/time_textView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="timetext"
+                android:textSize="10dp"
                 android:textColor="#103EB3" />
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <Button
+                    android:id="@+id/removebutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_shape"
+                    android:layout_weight="1"
+                    android:text="삭제" />
+                <Button
+                    android:id="@+id/updatebutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_shape1"
+                    android:text="수정" />
+
+                <TextView
+                    android:id="@+id/hotCount_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="추천: 0"
+                    android:gravity="center"
+                    android:textColor="#B31010" />
+
+                <Button
+                    android:id="@+id/hotbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_shape2"
+                    android:text="추천" />
+            </LinearLayout>
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/removebutton"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="삭제" />
-        <Button
-            android:id="@+id/updatebutton"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
-            android:text="수정" />
-
-        <TextView
-            android:id="@+id/hotCount_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="추천수 : 0"
-            android:textColor="#B31010" />
-
-        <Button
-            android:id="@+id/hotbutton"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
-            android:text="추천" />
-
     </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_weight="0.5">
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:text="title"
         android:textColor="#000000"
-        android:textSize="24dp" />
+        android:textSize="24dp"
+        android:layout_weight="2"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="361dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
         android:text="content"
         android:textColor="#666666"
         android:textSize="16dp" />
@@ -89,26 +113,32 @@
     <ListView
         android:id="@+id/addcomment_list"
         android:layout_width="match_parent"
-        android:layout_height="177dp" />
+        android:layout_height="match_parent"
+        android:layout_weight="1.8"/>
+</LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:layout_weight="3">
 
         <EditText
             android:id="@+id/commentText"
-            android:layout_width="341dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
+            android:layout_weight="0.4"
             android:inputType="textPersonName"
             android:hint="댓글을 입력하세요" />
 
         <Button
             android:id="@+id/commentbutton"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2.2"
+            android:background="@drawable/button_shape4"
             android:text="확인" />
 
     </LinearLayout>

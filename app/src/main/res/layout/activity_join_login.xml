@@ -6,27 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".Join_login">
 
-    <TextView
-        android:id="@+id/JoinView"
-        android:layout_width="323dp"
-        android:layout_height="49dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="회원가입"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="30dp"
-        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:id="@+id/JoinLiner"
+        android:layout_width="match_parent"
+        android:layout_height="101dp"
+        android:background="#596889"
+        android:gravity="center">
 
+        <TextView
+            android:id="@+id/JoinView"
+            android:layout_width="323dp"
+            android:layout_height="49dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="회원가입"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="30dp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/SchoolText"
         android:layout_width="323dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/JoinView"
+        android:layout_alignBottom="@+id/JoinLiner"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-85dp"
+        android:layout_marginBottom="-120dp"
         android:ems="10"
         android:hint="학교명을 입력하세요"
         android:inputType="textPersonName"
@@ -52,13 +60,14 @@
 
     <Button
         android:id="@+id/IDCheckbutton"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="42dp"
         android:layout_alignRight="@id/SchoolText"
         android:layout_alignBottom="@id/SchoolText"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="-50dp"
+        android:background="@drawable/button_shape4"
         android:text="중복확인"
         android:textSize="12sp"
         tools:ignore="MissingConstraints"
@@ -187,6 +196,7 @@
         android:layout_alignBottom="@id/userGrade_radioGroup"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-122dp"
+        android:background="@drawable/button_shape4"
         android:text="회원가입"
         tools:ignore="MissingConstraints,NotSibling"
         tools:layout_editor_absoluteX="95dp"

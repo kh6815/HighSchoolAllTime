@@ -11,9 +11,9 @@
         android:id="@+id/IDView"
         android:layout_width="168dp"
         android:layout_height="45dp"
-        android:layout_marginTop="50dp"
-        android:text="ID찾기"
         android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="ID찾기"
         android:textSize="30sp"
         android:textStyle="bold"
         tools:ignore="MissingConstraints"
@@ -21,7 +21,19 @@
         tools:layout_editor_absoluteY="71dp" />
 
     <EditText
-        android:id="@+id/LoginIDText"
+        android:id="@+id/ET_FindID_School"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="School"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="200dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/ET_FindID_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -33,7 +45,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/EmailText"
+        android:id="@+id/ET_FindID_Email"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,11 +56,12 @@
         tools:layout_editor_absoluteY="200dp"
         tools:ignore="MissingConstraints" />
     <Button
-        android:id="@+id/IDbutton"
+        android:id="@+id/Btn_FindID"
         android:layout_gravity="center"
         android:layout_width="220dp"
         android:layout_height="45dp"
         android:text="ID찾기"
+        android:background="@drawable/button_shape4"
         tools:layout_editor_absoluteX="49dp"
         tools:layout_editor_absoluteY="277dp"
         tools:ignore="MissingConstraints" />
@@ -67,7 +80,19 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/NameText2"
+        android:id="@+id/ET_FindPW_School"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="School"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="200dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/ET_FindPW_Name"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,7 +104,7 @@
         tools:layout_editor_absoluteY="413dp" />
 
     <EditText
-        android:id="@+id/EmailText2"
+        android:id="@+id/ET_FindPW_Email"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,7 +116,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/IDText"
+        android:id="@+id/ET_FindPW_ID"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -103,10 +128,11 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/FindPWbutton"
+        android:id="@+id/Btn_FindPW"
         android:layout_gravity="center"
         android:layout_width="220dp"
         android:layout_height="45dp"
+        android:background="@drawable/button_shape4"
         android:text="PW찾기"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="49dp"

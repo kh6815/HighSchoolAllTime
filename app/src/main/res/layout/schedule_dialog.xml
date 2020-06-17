@@ -10,17 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cafe_dialog_title"
-        android:text="오늘의 급식"
+        android:text="오늘의 스케쥴"
         android:textSize="40sp"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <TextView
+        android:id="@+id/cafe_dialog_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cafe_dialog_menu"
-        android:text="급식을 추가하세요"
-        android:textSize="20sp"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:text="스케줄을 추가하세요"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="20sp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -42,6 +42,15 @@
             android:layout_weight="1"
             android:background="@drawable/button_shape2"
             android:text="취소" />
+        <Button
+            android:id="@+id/cafe_dialog_delbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape"
+            android:text="삭제" />
+
 
         <Button
             android:id="@+id/cafe_dialog_addbutton"

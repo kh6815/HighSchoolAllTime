@@ -54,7 +54,6 @@ public class Notice_Board extends AppCompatActivity {
     private ListView list;
     private Button submit;
     private Button cencel;
-    private ImageView imageView1, imageView2, imageView3, imageView4, imageView5, imageView6,imageView7,imageView8,imageView9,imageView10;
 
     private EditText title;
     private EditText content;
@@ -305,16 +304,6 @@ public class Notice_Board extends AppCompatActivity {
 
         submit = (Button) view.findViewById(R.id.buttonSubmit);
         cencel = (Button) view.findViewById(R.id.buttonCanlcel);
-        imageView1 = (ImageView)findViewById(R.id.imageView1);
-        imageView2 = (ImageView)findViewById(R.id.imageView2);
-        imageView3 = (ImageView)findViewById(R.id.imageView3);
-        imageView4 = (ImageView)findViewById(R.id.imageView4);
-        imageView5 = (ImageView)findViewById(R.id.imageView5);
-        imageView6 = (ImageView)findViewById(R.id.imageView6);
-        imageView7 = (ImageView)findViewById(R.id.imageView7);
-        imageView8 = (ImageView)findViewById(R.id.imageView8);
-        imageView9 = (ImageView)findViewById(R.id.imageView9);
-        imageView10 = (ImageView)findViewById(R.id.imageView10);
 
         title = (EditText) view.findViewById(R.id.EditText_title);
         content = (EditText) view.findViewById(R.id.EditText_content);

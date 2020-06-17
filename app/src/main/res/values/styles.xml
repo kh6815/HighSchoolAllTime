@@ -8,6 +8,30 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:buttonStyle">@style/font_style_ButtonStyle</item>
+        <item name="android:editTextStyle">@style/font_style_EditTextStyle</item>
+        <item name="android:radioButtonStyle">@style/font_style_RadioButtonStyle</item>
+        <item name="android:checkboxStyle">@style/font_style_CheckboxStyle</item>
+        <item name="android:textViewStyle">@style/font_style_TextViewStyle</item>
+</style>
+
+    <style name="font_style_TextViewStyle" parent="@android:style/Widget.DeviceDefault.TextView">
+        <item name="android:fontFamily">@font/nanumsquareroundb</item>
     </style>
 
+    <style name="font_style_ButtonStyle" parent="@android:style/Widget.DeviceDefault.Button.Borderless">
+        <item name="android:fontFamily">@font/nanumsquareroundb</item>
+    </style>
+
+    <style name="font_style_EditTextStyle" parent="@android:style/Widget.DeviceDefault.EditText">
+        <item name="android:fontFamily">@font/nanumsquareroundb</item>
+    </style>
+
+    <style name="font_style_RadioButtonStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
+        <item name="android:fontFamily">@font/nanumsquareroundb</item>
+    </style>
+
+    <style name="font_style_CheckboxStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox">
+        <item name="android:fontFamily">@font/nanumsquareroundb</item>
+    </style>
 </resources>

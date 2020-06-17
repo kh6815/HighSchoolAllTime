@@ -1,23 +1,19 @@
 package com.example.highschoolalltime;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,8 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-
-public class Cafeteria extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class ScheduleActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener{
     public static int SUNDAY = 1;
     public static int MONDAY = 2;
     public static int TUESDAY = 3;
@@ -50,31 +45,26 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
     Calendar mThisMonthCalendar;
     Calendar calendar;
     //cafeteria_dialog에서 값을 가져오기 위한 변수 지정.
-    TextView cafe_dialog_title, cafe_dialog_menu, cafe_today;
+    TextView cafe_dialog_title, cafe_dialog_menu, tv_schedule_today;
     EditText cafe_dialog_eddittext;
-    Button cafe_dialog_dropbutton, cafe_dialog_addbutton;
-    String WhatDate;//클릭된 날짜를 저장하기 위한 변수 지정.
-
+    Button cafe_dialog_dropbutton, cafe_dialog_addbutton, cafe_dialog_delbutton;
+    String WhatDate, userID;//클릭된 날짜를 저장하기 위한 변수 지정.
+    boolean check;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        setContentView(R.layout.activity_schedule);
 
-    private View view;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_cafeteria, container, false);
-
+        Intent intent = getIntent();
+        userID = intent.getExtras().getString("userID");
         //버튼을 가져온다.
-        Button bLastMonth = (Button)view.findViewById(R.id.gv_calendar_activity_b_last);
-        Button bNextMonth = (Button)view.findViewById(R.id.gv_calendar_activity_b_next);
+        Button bLastMonth = (Button)findViewById(R.id.gv_calendar_activity_b_last);
+        Button bNextMonth = (Button)findViewById(R.id.gv_calendar_activity_b_next);
         //gridview와 textview를 가져온다.
-        mGvCalendar = (GridView) view.findViewById(R.id.gv_calendar_activity_gv_calendar);
-        mTvCalendarTitle = (TextView) view.findViewById(R.id.cafe_month);
-        cafe_today = view.findViewById(R.id.tv_cafe_today);
+        tv_schedule_today = findViewById(R.id.tv_schedule_today);
+        mGvCalendar = (GridView) findViewById(R.id.gv_calendar_activity_gv_calendar);
+        mTvCalendarTitle = (TextView) findViewById(R.id.cafe_month);
         //날짜클릭이벤트와 버튼클릭이벤트를 위한 설정
         mGvCalendar.setOnItemClickListener((AdapterView.OnItemClickListener) this);
         bLastMonth.setOnClickListener((View.OnClickListener) this);
@@ -101,9 +91,9 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success");
                     if(success) {//급식이 있으면 보여줌
-                        cafe_today.setText(jsonObject.getString("Menu"));
+                        tv_schedule_today.setText(jsonObject.getString("Menu"));
                     }else {//급식이없으면 return
-                        cafe_today.setText("오늘은 급식이 없습니다.");
+                        tv_schedule_today.setText("오늘의 일정이 없습니다.");
                     }
                 }catch(JSONException e) {
                     e.printStackTrace();
@@ -111,13 +101,10 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
             }
         };
         //volley를 사용해 서버로 요청
-        Cafeteria_Request cafeteria_request = new Cafeteria_Request(date, reponseListener);
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        queue.add(cafeteria_request);
-
-        return view;
+        Schedule schedule = new Schedule(date, userID,reponseListener);
+        RequestQueue queue = Volley.newRequestQueue(ScheduleActivity.this);
+        queue.add(schedule);
     }
-
     @Override
     public void onResume(){
         super.onResume();
@@ -126,7 +113,6 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
         getCalendar(mThisMonthCalendar);
 
     }
-
     private void getCalendar(Calendar calendar) {
         int lastMonthStartDay;
         int dayOfMonth;
@@ -179,7 +165,7 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
             mDayList.add(day);
         }
         //cafeteriaAdapter애 넣어주기
-        initCafeteriaAdapter();
+        initScheduleAdapter();
     }
 
     //지난달구현
@@ -199,8 +185,8 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
         return calendar;
     }
     //어뎁터에 넣어주기
-    private void initCafeteriaAdapter() {
-        mCalendarAdapter = new cafeteria_Adapter(getActivity(), R.layout.cafeteria_day, mDayList);
+    private void initScheduleAdapter() {
+        mCalendarAdapter = new cafeteria_Adapter(ScheduleActivity.this, R.layout.cafeteria_day, mDayList);
         mGvCalendar.setAdapter(mCalendarAdapter);
     }
 
@@ -209,22 +195,24 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {
         //다이얼로그 창은 xml로 만들어서 가져온다.
         //dialog만드는 코드
-        AlertDialog.Builder calendar_cafeteria = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder calendar_cafeteria = new AlertDialog.Builder(ScheduleActivity.this);
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.cafeteria_dialog,null);
+        View view = inflater.inflate(R.layout.schedule_dialog,null);
         calendar_cafeteria.setView(view);
         //cafeteria_dialog에서 값 가져오기
         cafe_dialog_title = view.findViewById(R.id.cafe_dialog_title);
         cafe_dialog_menu = view.findViewById(R.id.cafe_dialog_menu);
         cafe_dialog_eddittext = view.findViewById(R.id.cafe_dialog_edittext);
         cafe_dialog_dropbutton = view.findViewById(R.id.cafe_dialog_dropbutton);
+        cafe_dialog_delbutton = view.findViewById(R.id.cafe_dialog_delbutton);
         cafe_dialog_addbutton = view.findViewById(R.id.cafe_dialog_addbutton);
         //string값으로 현재 년도+현재 달의 값 + 날짜(날짜는 gridview의 position으로 설정한다.)를 저장
         WhatDate = mThisMonthCalendar.get(Calendar.YEAR)+"" +
                 (mThisMonthCalendar.get(Calendar.MONTH)+1)+""+position;
+
         final AlertDialog dialog = calendar_cafeteria.create();//dialog생성
         //다이얼로그 창 구현
-        cafe_dialog_title.setText(mThisMonthCalendar.get(Calendar.MONTH)+1 + "월의 급식");//다이얼로그 title설정
+        cafe_dialog_title.setText(mThisMonthCalendar.get(Calendar.MONTH)+1 + "월의 스케쥴");//다이얼로그 title설정
         //DB와 연동하여 저장된 Text보여주기
         Response.Listener<String> reponseListener = new Response.Listener<String>() {
             @Override
@@ -233,9 +221,9 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success");
                     if(success) {//급식이 있으면 보여줌
-                        cafe_dialog_menu.setText(jsonObject.getString("Menu"));
+                        cafe_dialog_menu.setText(jsonObject.getString("Todo"));
                     }else {//급식이없으면 return
-                        cafe_dialog_menu.setText("급식이 없습니다.");
+                        cafe_dialog_menu.setText("메모가 없습니다.");
                         return;
                     }
                 }catch(JSONException e) {
@@ -244,9 +232,65 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
             }
         };
         //volley를 사용해 서버로 요청
-        Cafeteria_Request cafeteria_request = new Cafeteria_Request(WhatDate, reponseListener);
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        queue.add(cafeteria_request);
+        Schedule schedule = new Schedule(WhatDate, userID, reponseListener);
+        RequestQueue queue = Volley.newRequestQueue(ScheduleActivity.this);
+        queue.add(schedule);
+
+        cafe_dialog_delbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //해당 날짜에 급식이 있는지 확인
+                Response.Listener responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
+                            if(!success) {//급식이 없을 경우
+                                Toast.makeText(ScheduleActivity.this,"삭제 할 메모가 없습니다.",
+                                        Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }else {//급식이 있는 경우
+                                Method_delete_check();//급식 수정하는 method가져오기
+                                dialog.dismiss();
+                            }
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                //Volley를 이용해 서버로 요청
+                Schedule schedule = new Schedule(WhatDate, userID,responseListener);
+                RequestQueue queue = Volley.newRequestQueue(ScheduleActivity.this);
+                queue.add(schedule);
+            }
+
+            private void Method_delete_check(){
+
+                Response.Listener responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
+                            if(success) {
+                                Toast.makeText(ScheduleActivity.this,"메모를 삭제하였습니다.",
+                                        Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }else {
+                                return;
+                            }
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                //Volley를 이용해 서버로 요청
+                Delete_Schedule delete_schedule = new Delete_Schedule(userID, WhatDate, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(ScheduleActivity.this);
+                queue.add(delete_schedule);
+            }
+        });
         //추가버튼 눌렀을때 DB에 값 저장
         cafe_dialog_addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,14 +315,14 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
                     }
                 };
                 //Volley를 이용해 서버로 요청
-                Cafeteria_Request cafeteria_request = new Cafeteria_Request(WhatDate, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(getActivity());
-                queue.add(cafeteria_request);
+                Schedule schedule = new Schedule(WhatDate, userID,responseListener);
+                RequestQueue queue = Volley.newRequestQueue(ScheduleActivity.this);
+                queue.add(schedule);
             }
             //급식 추가 method
             private void Method_Add_Cafe() {
                 //Menu에 String값으로 EditText저장
-                String Menu = cafe_dialog_eddittext.getText().toString();
+                String Todo = cafe_dialog_eddittext.getText().toString();
                 //DB에 값 넣어주기
                 Response.Listener responseListener = new Response.Listener<String>() {
                     @Override
@@ -287,7 +331,7 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
                             if(success) {
-                                Toast.makeText(getActivity(),"급식을 추가하였습니다.",
+                                Toast.makeText(ScheduleActivity.this,"메모를 추가하였습니다.",
                                         Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }else {
@@ -299,14 +343,14 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
                     }
                 };
                 //Volley를 이용해 서버로 요청
-                Register_Cafe register_cafe = new Register_Cafe(Menu, WhatDate, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(getActivity());
-                queue.add(register_cafe);
+                Register_Schedule register_schedule = new Register_Schedule(userID, WhatDate, Todo, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(ScheduleActivity.this);
+                queue.add(register_schedule);
             }
             //급식 수정 method
             private void Method_Update_Cafe() {
                 //Menu에 String값으로 EditText저장
-                String Menu = cafe_dialog_eddittext.getText().toString();
+                String Todo = cafe_dialog_eddittext.getText().toString();
                 Response.Listener responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -314,7 +358,7 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
                             if(success) {
-                                Toast.makeText(getActivity(),"급식을 수정했습니다.",
+                                Toast.makeText(ScheduleActivity.this,"메모를 수정했습니다.",
                                         Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }else {
@@ -326,9 +370,9 @@ public class Cafeteria extends Fragment implements AdapterView.OnItemClickListen
                     }
                 };
                 //Volley를 이용해 서버로 요청
-                Update_Cafe update_cafe = new Update_Cafe(Menu, WhatDate, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(getActivity());
-                queue.add(update_cafe);
+                Update_Schedule update_schedule = new Update_Schedule(Todo, WhatDate, userID, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(ScheduleActivity.this);
+                queue.add(update_schedule);
             }
         });
         //취소했을때
