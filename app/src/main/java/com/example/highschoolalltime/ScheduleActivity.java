@@ -190,6 +190,22 @@ public class ScheduleActivity extends AppCompatActivity implements AdapterView.O
         mGvCalendar.setAdapter(mCalendarAdapter);
     }
 
+    public class MyScheduleItem { //리스트뷰에 아이템 저장
+        private String contentStr;
+
+        public MyScheduleItem(String content){
+            this.contentStr = content;
+        }
+        public MyScheduleItem() {};
+
+        public void setContent(String content){
+            contentStr = content;
+        }
+        public String getContent(){
+            return this.contentStr;
+        }
+    }
+
     //날짜 클릭 이벤트 구현
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {

@@ -123,7 +123,7 @@ public class Notice_Board extends AppCompatActivity {
                 MyItem item = (MyItem) parent.getItemAtPosition(position);
 
                 String userIDStr = item.getuserID();
-                String titleStr = item.getTitle() ;
+                String titleStr = item.getTitle();
                 String contentStr = item.getContent();
                 String timeStr = item.getTime();
                 String hotCount = item.getHotCount();

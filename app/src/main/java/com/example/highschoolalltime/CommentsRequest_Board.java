@@ -10,11 +10,12 @@ import java.util.Map;
 public class CommentsRequest_Board extends StringRequest {
     //서버 URL 설정( PHP  파일 연동)
     final  static  private  String URL = "http://wkwjsrjekffk.dothome.co.kr/Comments_Register.php";
-    private Map<String, String> map;
+    private Map<String, String> map;//String 형식의 배열 생성
 
     public CommentsRequest_Board(String content_userid, String content_userSchool , String content_title, String content_content , String content_Whatboard, String content_time, String userid, String comments, String time,Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
+        //map에 저장
         map = new HashMap<>();
         map.put("content_userid", content_userid);
         map.put("content_userSchool", content_userSchool);
@@ -27,7 +28,7 @@ public class CommentsRequest_Board extends StringRequest {
         map.put("comments", comments);
         map.put("time", time);
     }
-
+    //map리턴
     @Override
     protected Map<String, String> getParams() throws AuthFailureError {
         return map;

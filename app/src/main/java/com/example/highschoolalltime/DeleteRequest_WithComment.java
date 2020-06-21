@@ -10,11 +10,11 @@ import java.util.Map;
 public class DeleteRequest_WithComment extends StringRequest {
     //서버 URL 설정( PHP  파일 연동)
     final  static  private  String URL = "http://wkwjsrjekffk.dothome.co.kr/Delete_WithComments.php";
-    private Map<String, String> map;
+    private Map<String, String> map;//string배열로 저장
     public DeleteRequest_WithComment(String content_userid, String content_userSchool , String content_title, String content_content , String content_Whatboard, String content_time, Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
-
+    //map에 값넣기
         map = new HashMap<>();
         map.put("content_userid", content_userid);
         map.put("content_userSchool", content_userSchool);
@@ -23,7 +23,7 @@ public class DeleteRequest_WithComment extends StringRequest {
         map.put("content_Whatboard", content_Whatboard);
         map.put("content_time", content_time);
     }
-
+    //map리턴
     @Override
     protected Map<String, String> getParams() throws AuthFailureError {
         return map;

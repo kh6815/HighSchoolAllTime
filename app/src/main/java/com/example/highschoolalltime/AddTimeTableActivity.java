@@ -55,7 +55,7 @@ public class AddTimeTableActivity extends Fragment {
     private static final String TAG_SUBJECT = "Subject";//DB 스키마
     private static final String TAG_POSITION = "Position";//DB 스키마
 
-    JSONArray peoples = null;//응담으로 인한 데이터 저장 배열
+    JSONArray peoples = null;//응답으로 인한 데이터 저장 배열
     ArrayList<HashMap<String, String>> personList;//HashMap 배열
     List<String> data = new ArrayList<>();//데이터 저장 리스트
 
@@ -72,8 +72,8 @@ public class AddTimeTableActivity extends Fragment {
         view = inflater.inflate(R.layout.activity_add_time_table, container, false);
 
 
-        Bundle bundle1 = getArguments();
-        userId = bundle1.getString("userID");
+        Bundle bundle1 = getArguments();//MainFrame에서 받은 bundle1값을 가져온다.
+        userId = bundle1.getString("userID");//bundle1에 저장된 유저아이디값 저장
 
         add = view.findViewById(R.id.btn_add);//버튼 아이디 값 불러오기
         del = view.findViewById(R.id.btn_del);
@@ -134,7 +134,7 @@ public class AddTimeTableActivity extends Fragment {
                 dialog.show();
             }
         });
-        getData("http://highschool.dothome.co.kr/getTimeTable.php");
+        getData("http://highschool.dothome.co.kr/getTimeTable.php"); //시간표 데이터를 가져오기위한 메서드
         return view;
     }
 
@@ -162,30 +162,31 @@ public class AddTimeTableActivity extends Fragment {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         queue.add(delete_time);
     }
+    //시간표에 db 데이터를 저장하기 위한 메서드
     protected void showList(){
         try {
-            JSONObject jsonObj = new JSONObject(myJSON);
-            peoples = jsonObj.getJSONArray(TAG_RESPONSE);
+            JSONObject jsonObj = new JSONObject(myJSON);//myJSON에 저장된 db 데이터값을 가져오기 위한 변수 생성
+            peoples = jsonObj.getJSONArray(TAG_RESPONSE);//db에서 넘어온값을 peoples의 리스트에 저장
 
-            for(int i = 0; i<peoples.length(); i++){
+            for(int i = 0; i<peoples.length(); i++){//반복문을 이용하여 리스트에 삽입
                 JSONObject c = peoples.getJSONObject(i);
-                String subject = c.getString(TAG_SUBJECT);
-                String position = c.getString(TAG_POSITION);
+                String subject = c.getString(TAG_SUBJECT);//과목값을 저장하는 변수
+                String position = c.getString(TAG_POSITION);//위치(교시)를 저장하는 변수
 
-                HashMap<String, String> persons = new HashMap<String, String>();
+                HashMap<String, String> persons = new HashMap<String, String>();//해쉬맵 형태의 배열을 생성
 
-                persons.put(TAG_SUBJECT, subject);
-                persons.put(TAG_POSITION, position);
+                persons.put(TAG_SUBJECT, subject); //키워드 형식으로 과목 저장
+                persons.put(TAG_POSITION, position);//키워드 형식으로 위치(교시) 저장
 
 
-                personList.add(persons);
+                personList.add(persons);//해쉬맵 배열을 리스트에 저장
             }
-            System.out.println(personList);
-            System.out.println(personList.size());
+            System.out.println(personList);//출력값 확인
+            System.out.println(personList.size());//리스트 사이즈값 확인
 
             //Collections.reverse(personList);
             for(int i = 0; i < personList.size(); i++){
-                HashMap<String, String> hashMap = personList.get(i);
+                HashMap<String, String> hashMap = personList.get(i);//각 배열의 값을 해쉬맵으로 불러오기
                 String sub = hashMap.get(TAG_SUBJECT);
                 String pos = hashMap.get(TAG_POSITION);
                 switch (pos) {//Switch문을 이용해 문자열과 Layout 내 TextView ID 값들과 비교해 TextView ID값을 정의, <m:월, t:화, w:수, tu:목, f:금>, 문자열 제일 뒤는 수강 시간으로 ID값을 지정
@@ -307,24 +308,24 @@ public class AddTimeTableActivity extends Fragment {
         }
     }
 
-    void getData(String url) {
+    void getData(String url) {//db php 주소 받음
         class GetDataJSON extends AsyncTask<String,Void,String> {
             @Override
             protected String doInBackground(String... params) {
-                String uri = params[0];
-                String userID = params[1];
+                String uri = params[0];//0번째 파라미터의 주소값 저장
+                String userID = params[1];//1번째 파라미터의 유저아이디값 저장
                 String postParameters = "userID=" + userID;
 
 
                 BufferedReader bufferedReader = null;
                 try {
                     URL url = new URL(uri);
-                    HttpURLConnection con = (HttpURLConnection)url.openConnection();
+                    HttpURLConnection con = (HttpURLConnection)url.openConnection(); //url 연결
 
 
                     con.setReadTimeout(5000);
                     con.setConnectTimeout(5000);
-                    con.setRequestMethod("POST");
+                    con.setRequestMethod("POST");//post 형식으로 보냄
                     con.setDoInput(true);
                     con.connect();
 
@@ -367,12 +368,12 @@ public class AddTimeTableActivity extends Fragment {
             }
             @Override
             protected void onPostExecute(String result){
-                myJSON = result;
-                showList();
+                myJSON = result;//결과값을 저장
+                showList();//db에서 받은 결과값을 시간표리스트에 저장하기 위한 메서드
             }
         }
-        GetDataJSON g = new GetDataJSON();
-        g.execute(url, userId); //유저 아이디 추가
+        GetDataJSON g = new GetDataJSON(); //JSON형식으로 데이터 가져옴
+        g.execute(url, userId); //url,유저아이디넘김
     }
 
     void show() {

@@ -1,17 +1,17 @@
 package com.example.highschoolalltime;
 
 public class commentItem {
-    private String useridStr;
-    private String commentsStr;
-    private String timeStr;
-    private String content_useridStr;
-    private String content_userSchoolStr;
-    private String content_titleStr ;
-    private String content_contentStr ;
-    private String content_WhatboardStr;
-    private String content_timeStr ;
+    private String useridStr; //댓글 쓴 유저 아이디
+    private String commentsStr; // 댓글 내용
+    private String timeStr; //댓글 쓴 시간
+    private String content_useridStr; // 댓글을 적은 게시글 유저 아이디
+    private String content_userSchoolStr; // 게시글 유저 학교
+    private String content_titleStr ; // 게시글 제목
+    private String content_contentStr ; // 게시글 내용
+    private String content_WhatboardStr; //게시글 보드
+    private String content_timeStr ; //게시글 시간
 
-    public commentItem(String userid, String comments, String time){
+    public commentItem(String userid, String comments, String time){ // 생성자로 댓글 정보 저장
         this.useridStr = userid;
         this.commentsStr = comments;
         this.timeStr = time;
@@ -19,6 +19,7 @@ public class commentItem {
     }
     public commentItem() {};
 
+    //필요한 정보 저장하는 메서드
     public void setUserid(String userid){
         useridStr = userid;
     }
@@ -48,7 +49,7 @@ public class commentItem {
         content_timeStr = content_time;
     }
 
-
+//필요한 정보 가져오는 메서드
     public String getUserID(){ return this.useridStr; }
     public String getComments(){ return this.commentsStr; }
     public String getTime(){ return this.timeStr; }

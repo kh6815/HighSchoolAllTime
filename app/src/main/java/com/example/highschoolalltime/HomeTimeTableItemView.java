@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 public class HomeTimeTableItemView extends LinearLayout {
-    TextView textView1, textView2;
+    TextView textView1, textView2; //홈화면 시간표 리스뷰에 저장할 텍스트데이터 변수
 
     public HomeTimeTableItemView(Context context) {
         super(context);
@@ -25,19 +25,21 @@ public class HomeTimeTableItemView extends LinearLayout {
         init(context);
     }
 
+    //리스트뷰에 넣을 아이템 형태 xml 링크
     private void init(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.hometimetablelistitem, this, true);
         textView1 = findViewById(R.id.WhatTimetextView);
         textView2 = findViewById(R.id.timeContenttextView);
     }
+    //데이터 저장 메서드
     public void setWhattime(String position){
         String temp = null;
-        if(position.equals("")){
+        if(position.equals("")){//시간표에 수업이 없을 때
             temp = "";
         }
         else {
-            switch (position.substring(11)) {
+            switch (position.substring(11)) { //수업이 있을 떄
                 case "1":
                     temp = "1교시";
                     break;
