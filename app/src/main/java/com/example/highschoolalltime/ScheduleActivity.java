@@ -180,7 +180,7 @@ public class ScheduleActivity extends AppCompatActivity implements AdapterView.O
                     }
                 };
                 //서버로 Volley를 이용해서 요청을 함.
-                Update_Schedule update_schedule = new Update_Schedule(userID, whatdate, Todo, scheduleid, responseListener);//Update_Schedule 클래스 사용.
+                Update_Schedule update_schedule = new Update_Schedule(Todo, whatdate, userID, scheduleid, responseListener);//Update_Schedule 클래스 사용.
                 RequestQueue queue = Volley.newRequestQueue(ScheduleActivity.this);
                 queue.add(update_schedule);
                 dialog.dismiss();//dialog닫기
