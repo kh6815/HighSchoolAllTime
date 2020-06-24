@@ -3,7 +3,6 @@ package com.example.highschoolalltime;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -17,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,8 +36,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -86,8 +82,46 @@ public class Clickboard extends AppCompatActivity {
             Intent intent = new Intent(Clickboard.this, Hot_Board.class );
             startActivity(intent);
         }
-
-
+        else if(Whatboard.equals("Secret_Board")){
+            Intent intent = new Intent(Clickboard.this, Secret_Board.class );
+            startActivity(intent);
+        }
+        else if(Whatboard.equals("GS_Board")){
+            Intent intent = new Intent(Clickboard.this, GraduationStudent_Board.class );
+            startActivity(intent);
+        }
+        else if(Whatboard.equals("Love_Board")){
+            Intent intent = new Intent(Clickboard.this, Love_Board.class );
+            startActivity(intent);
+        }
+        else if(Whatboard.equals("Confession_Board")){
+            Intent intent = new Intent(Clickboard.this, Confession_Board.class );
+            startActivity(intent);
+        }
+        else if(Whatboard.equals("Myclass_Board")){
+            Intent intent = new Intent(Clickboard.this, Myclass_Board.class );
+            startActivity(intent);
+        }
+        else if(Whatboard.equals("UT_Board")){
+            Intent intent = new Intent(Clickboard.this, UsedTransaction_Board.class );
+            startActivity(intent);
+        }
+        else if(Whatboard.equals("Club_Board")){
+            Intent intent = new Intent(Clickboard.this, Club_Board.class );
+            startActivity(intent);
+        }
+        else if(Whatboard.equals("Contest_Board")){
+            Intent intent = new Intent(Clickboard.this, Contest_Board.class );
+            startActivity(intent);
+        }
+        else if(Whatboard.equals("Volunteer_Board")){
+            Intent intent = new Intent(Clickboard.this, Volunteer_Board.class );
+            startActivity(intent);
+        }
+        else if(Whatboard.equals("Study_Board")){
+            Intent intent = new Intent(Clickboard.this, Study_Board.class );
+            startActivity(intent);
+        }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -381,7 +415,7 @@ public class Clickboard extends AppCompatActivity {
                 final String title_temp= newtitle.getText().toString();
                 final String content_temp = newcontent.getText().toString();
                 String comments = "";
-                final String Whatboard= "Notice_Board";
+                final String Whatboard1= Whatboard;
                 final String hotCount = 0 + "";
                 final String hotclickUser = userID +"/";
                 String formatDate = time;
@@ -394,6 +428,7 @@ public class Clickboard extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
                             if(success){//게시판 글수정 성공
+
                                 Toast.makeText(getApplicationContext(),"게시판 글을 수정하셨습니다.",Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(Clickboard.this, Clickboard.class );
@@ -403,7 +438,7 @@ public class Clickboard extends AppCompatActivity {
                                 intent.putExtra("content", content_temp);
                                 intent.putExtra("time", time);
                                 intent.putExtra("hotCount", hotCount );
-                                intent.putExtra("Whatboard", Whatboard);
+                                intent.putExtra("Whatboard", Whatboard1);
                                 intent.putExtra("hotclickUser", hotclickUser);
 
                                 finish();
@@ -419,7 +454,7 @@ public class Clickboard extends AppCompatActivity {
                     }
                 };
                 //서버로 Volley를 이용해서 요청을 함.
-                UpdateRequest_Board updateRequest_board = new UpdateRequest_Board(userID, userSchool ,title_temp, content_temp, comments,Whatboard, formatDate,responseListener);
+                UpdateRequest_Board updateRequest_board = new UpdateRequest_Board(userID, userSchool ,title_temp, content_temp, comments,Whatboard1, formatDate,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(Clickboard.this);
                 queue.add(updateRequest_board);
                 dialog.dismiss();

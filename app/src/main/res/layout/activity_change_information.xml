@@ -8,6 +8,7 @@
     android:padding="10dp"
     tools:context=".ChangeInformation">
 
+    <!-- 유저이름 text -->
     <TextView
         android:id="@+id/TextView_ChInform_title"
         android:layout_width="wrap_content"
@@ -17,18 +18,19 @@
         android:layout_marginBottom="10dp"
         android:textSize="25sp"/>
 
+    <!-- db에 저장된 유저이름 text 레이아웃-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1">
-
+        <!-- db에 저장된 유저이름 text -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이름"
             android:textSize="30sp"></TextView>
-        <!--DB연동 예정-->
+        <!-- db에 저장할 유저이름 text -->
         <EditText
             android:id="@+id/Edittext_ChInform_Name"
             android:layout_width="match_parent"
@@ -36,18 +38,22 @@
             android:layout_marginLeft="10dp"
             android:text="DB에 저장된 유저의 이름" />
     </LinearLayout>
+
+    <!-- db에 저장된 학교이름 text 레이아웃-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1">
 
+        <!-- db에 저장된 학교이름 text -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="학교"
             android:textSize="30sp"/>
 
+        <!-- db에 저장할 학교이름 text -->
         <EditText
             android:id="@+id/Edittext_ChInform_School"
             android:layout_width="match_parent"
@@ -55,18 +61,22 @@
             android:layout_marginLeft="10dp"
             android:text="DB에 저장된 학교 이름"/>
     </LinearLayout>
+
+    <!-- db에 저장된 메일 text 레이아웃-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1">
 
+        <!-- db에 저장된 메일 text-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="메일"
             android:textSize="30sp"/>
-        <!--DB연동 예정-->
+
+        <!-- db에 저장할 메일 text-->
         <EditText
             android:id="@+id/Edittext_ChInform_Email"
             android:layout_width="match_parent"
@@ -74,18 +84,22 @@
             android:layout_marginLeft="10dp"
             android:text="DB에 저장된 e-메일 주소"> </EditText>
     </LinearLayout>
+
+    <!-- db에 저장된 PW text 레이아웃-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1">
 
+        <!-- db에 저장된 PW text -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="새 password"
         android:textSize="20sp"/>
 
+        <!-- db에 저장할 PW text -->
     <EditText
         android:id="@+id/Edittext_ChInform_NewPW"
         android:layout_width="match_parent"
@@ -93,35 +107,39 @@
         android:text="DB에 저장된 PW"/>
     </LinearLayout>
 
+    <!-- PW 확인 text 레이아웃-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1">
+        <!-- db에 저장된 PW text -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="새 password 확인"/>
-
+        <!-- db에 저장할 PW 확인 text -->
     <EditText
         android:id="@+id/Edittext_ChInform_IsNewPW"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="DB에 저장된 PW"/>
     </LinearLayout>
+    <!-- db에 저장된 학년 레이아웃 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_weight="1">
-
+        <!-- 학년 text -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="학년"
             android:textSize="30sp"/>
 
+        <!-- db에 저장된 학년 text -->
         <TextView
             android:id="@+id/TextView_ChInform_userGrade"
             android:layout_width="match_parent"
@@ -130,6 +148,7 @@
             android:text="DB에 저장된 학년"
             android:textSize="30sp"/>
 
+        <!-- db에 저장할 학년 그룹라디오 -->
         <RadioGroup
             android:layout_marginTop="20dp"
             android:layout_gravity="right"
@@ -155,6 +174,7 @@
                 android:text="3학년"/>
         </RadioGroup>
     </LinearLayout>
+    <!-- db에 저장할 회원정보 수정 버튼 -->
     <Button
         android:id="@+id/Button_ChInform_Update"
         android:layout_gravity="center|bottom"

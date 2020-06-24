@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".Find_IDPW_login">
 
+    <!-- ID 찾기 text -->
     <TextView
         android:id="@+id/IDView"
         android:layout_width="168dp"
@@ -20,6 +21,7 @@
         tools:layout_editor_absoluteX="49dp"
         tools:layout_editor_absoluteY="71dp" />
 
+    <!-- ID 찾기 학교작성란 -->
     <EditText
         android:id="@+id/ET_FindID_School"
         android:layout_gravity="center"
@@ -32,6 +34,7 @@
         tools:layout_editor_absoluteY="200dp"
         tools:ignore="MissingConstraints" />
 
+    <!-- ID 찾기 이름작성란 -->
     <EditText
         android:id="@+id/ET_FindID_Name"
         android:layout_width="wrap_content"
@@ -44,6 +47,7 @@
         tools:layout_editor_absoluteY="139dp"
         tools:ignore="MissingConstraints" />
 
+    <!-- ID 찾기 이메일작성란 -->
     <EditText
         android:id="@+id/ET_FindID_Email"
         android:layout_gravity="center"
@@ -55,6 +59,7 @@
         tools:layout_editor_absoluteX="49dp"
         tools:layout_editor_absoluteY="200dp"
         tools:ignore="MissingConstraints" />
+    <!-- ID 찾기 버튼 -->
     <Button
         android:id="@+id/Btn_FindID"
         android:layout_gravity="center"
@@ -66,6 +71,7 @@
         tools:layout_editor_absoluteY="277dp"
         tools:ignore="MissingConstraints" />
 
+    <!-- pw 찾기 text -->
     <TextView
         android:id="@+id/PWView"
         android:layout_gravity="center"
@@ -79,6 +85,7 @@
         tools:layout_editor_absoluteY="345dp"
         tools:ignore="MissingConstraints" />
 
+    <!-- pw 찾기 학교작성란 -->
     <EditText
         android:id="@+id/ET_FindPW_School"
         android:layout_gravity="center"
@@ -91,6 +98,7 @@
         tools:layout_editor_absoluteY="200dp"
         tools:ignore="MissingConstraints" />
 
+    <!-- pw 찾기 이름작성란 -->
     <EditText
         android:id="@+id/ET_FindPW_Name"
         android:layout_gravity="center"
@@ -103,6 +111,7 @@
         tools:layout_editor_absoluteX="49dp"
         tools:layout_editor_absoluteY="413dp" />
 
+    <!-- pw 찾기 이메일작성란 -->
     <EditText
         android:id="@+id/ET_FindPW_Email"
         android:layout_gravity="center"
@@ -115,6 +124,7 @@
         tools:layout_editor_absoluteY="531dp"
         tools:ignore="MissingConstraints" />
 
+    <!-- pw 찾기 ID작성란 -->
     <EditText
         android:id="@+id/ET_FindPW_ID"
         android:layout_gravity="center"
@@ -127,6 +137,7 @@
         tools:layout_editor_absoluteY="471dp"
         tools:ignore="MissingConstraints" />
 
+    <!-- pw 찾기 버튼 -->
     <Button
         android:id="@+id/Btn_FindPW"
         android:layout_gravity="center"

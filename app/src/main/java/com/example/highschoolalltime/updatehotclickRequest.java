@@ -10,11 +10,11 @@ import java.util.Map;
 public class updatehotclickRequest extends StringRequest {
     //서버 url 설정(php파일 연동)
     final static  private String URL="http://wkwjsrjekffk.dothome.co.kr/updata_hotclick.php";
-    private Map<String,String> map;
+    private Map<String,String> map;    //string배열로 저장
 
     public updatehotclickRequest(String userSchool, String title, String content, String Whatboard, String hotCount,String hotclickUser, Response.Listener<String>listener){
         super(Method.POST,URL,listener,null);
-
+        //map에 값넣기
         map=new HashMap<>();
         map.put("userSchool",userSchool);
         map.put("title",title);
@@ -23,7 +23,7 @@ public class updatehotclickRequest extends StringRequest {
         map.put("hotCount", hotCount);
         map.put("hotclickUser",hotclickUser);
     }
-
+    //map리턴
     @Override
     protected Map<String, String> getParams() throws AuthFailureError {
         return map;

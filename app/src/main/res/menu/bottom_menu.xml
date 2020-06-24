@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--앱의 하단바를 설정하는 xml파일-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--홈, 시간표, 급식표, 게시판, mypage 5개의 탭을 생성, 각 icon을 drawble파일에서 가져와 설정.-->
     <item
         android:id="@+id/action_home"
         android:enabled="true"

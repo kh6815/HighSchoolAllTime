@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--로딩 페이지 구현 xml파일-->
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:interpolator="@android:anim/accelerate_interpolator"
     android:duration="1500"
-    android:repeatCount="1">
+    android:repeatCount="1"><!--duration은 돌아가는 시간(1.5초), repeatCount는 돌아가는 횟수 = 1-->
 
     <rotate xmlns:android="http://schemas.android.com/apk/res/android"
         android:interpolator="@android:anim/linear_interpolator"
@@ -10,6 +11,6 @@
         android:pivotY="50%"
         android:fromDegrees="0"
         android:toDegrees="360">
-    </rotate>
-
+    </rotate><!--pivotX는 x축 설정(50%=가운데), pivotY는 y축 설정(50%=가운데),
+    fromDegrees는 회전을 시작하는 각도(0도에서), toDegrees는 회전을 종료하는 각도(360도로 회전)-->
 </set>

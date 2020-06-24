@@ -42,7 +42,7 @@ public class Mypage extends Fragment {
     private View view;
     private ListView Mypage_Content_list, Mypage_Comments_list;
 
-    //게시글
+    //게시글 관련 태그 변수 선언
     String userID,userSchool,myJSON;
     private static String TAG = "Mypage";
     private static final String TAG_RESPONSE = "response";
@@ -56,7 +56,7 @@ public class Mypage extends Fragment {
     private static final String TAG_HOTCLICKUSER = "hotclickUser";
 
 
-    //댓글
+    //댓글 관련 태그 변수 선언
     private static final String TAG_CONTENT_USERID = "content_userid";
     private static final String TAG_CONTENT_USERSHCOOL = "content_userSchool";
     private static final String TAG_CONTENT_TITLE = "content_title";
@@ -67,14 +67,17 @@ public class Mypage extends Fragment {
     private static final String TAG_COMMENTS_COMMENTS = "comments";
     private static final String TAG_COMMENTS_TIME = "time";
 
-    JSONArray peoples = null;
-    ArrayList<HashMap<String, String>> personList;
-    MyAdapter adapter;
+    //게시글 관련
+    JSONArray peoples = null;// db의 json형식의 데이터 저장 배열
+    ArrayList<HashMap<String, String>> personList;//리스트뷰에 저장할 db 데이터 저장 리스트
+    MyAdapter adapter;//리스트 뷰에 저장할 어댑터 변수
 
-    JSONArray commentsArray = null;
-    ArrayList<HashMap<String, String>> commentsList;
-    commentAdapter adapter1;
+    //댓글 관련련
+    JSONArray commentsArray = null;// db의 json형식의 데이터 저장 배열
+    ArrayList<HashMap<String, String>> commentsList;//리스트뷰에 저장할 db 데이터 저장 리스트
+    commentAdapter adapter1;//리스트 뷰에 저장할 어댑터 변수
 
+    //자동로그인 할때 저장된 내부db를 로그아웃이나 회원탈퇴 할때 삭제 하기 위해 가져옴
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
@@ -85,8 +88,10 @@ public class Mypage extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //xml 연결
         view = inflater.inflate(R.layout.activity_mypage, container, false);//메인화면에 userid를 계속 띄우주기 위함.
 
+        //내부 db 가져오기
         pref = getActivity().getSharedPreferences("mine", Context.MODE_PRIVATE);
         editor = pref.edit();
 
@@ -125,11 +130,9 @@ public class Mypage extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Main_login.class);
+                //로그아웃시 내부 db 삭제
                 editor.clear();
                 editor.commit();
-                //editor.remove("userID");
-                //editor.remove("userPassword");
-                //editor.remove("userSchool");
                 getActivity().finish();
                 startActivity(intent); //액티비티 이동
             }
@@ -151,8 +154,7 @@ public class Mypage extends Fragment {
             }
         });
 
-
-        //DB에 저장된 글 listview는 차후 개발예정
+        //DB에 저장된 나의 게시글 listview 아이템을 눌렀을 때 해당 게시글 페이지로 이동
         Mypage_Content_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
@@ -179,7 +181,7 @@ public class Mypage extends Fragment {
                 //finish();
                 startActivity(intent);
             }
-        });
+        });//DB에 저장된 나의 댓글 listview 아이템을 눌렀을 때 해당 게시글 페이지로 이동
         Mypage_Comments_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
@@ -190,12 +192,12 @@ public class Mypage extends Fragment {
                 String contentStr = item.getContent_content();
                 String timeStr = item.getContent_time();
                 String Whatboard = item.getContent_Whatboard();
-
                 passContent("http://wkwjsrjekffk.dothome.co.kr/Mypage_PassContentSet.php", userIDStr, titleStr, contentStr, Whatboard, timeStr);
             }
         });
         return view;
     }
+    //댓글 리스트아이템이랑 연결할 어댑터 생성
     class commentAdapter extends BaseAdapter {
         private ArrayList<commentItem> items = new ArrayList<>();
 
@@ -228,6 +230,7 @@ public class Mypage extends Fragment {
             return view;
         }
     }
+    //게시글 리스트아이템이랑 연결할 어댑터 생성
     class MyAdapter extends BaseAdapter {
         private ArrayList<MyItem> items = new ArrayList<>();
 
@@ -265,12 +268,13 @@ public class Mypage extends Fragment {
 
     protected void showList(){
         try {
-            JSONObject jsonObj = new JSONObject(myJSON);
-            peoples = jsonObj.getJSONArray(TAG_RESPONSE);
+            JSONObject jsonObj = new JSONObject(myJSON);//myJSON에 저장된 db 데이터값을 가져오기 위한 변수 생성
+            peoples = jsonObj.getJSONArray(TAG_RESPONSE);;//db에서 넘어온값을 peoples의 리스트에 저장
 
-            for(int i = 0; i<peoples.length(); i++){
+            for(int i = 0; i<peoples.length(); i++){ //반복문을 이용하여 게시글 리스트에 삽입
                 JSONObject c = peoples.getJSONObject(i);
 
+                //db에서 넘어온값 변수에 저장
                 String userid = c.getString(TAG_USERID);
                 String title = c.getString(TAG_TITLE);
                 String content = c.getString(TAG_CONTENT);
@@ -280,8 +284,9 @@ public class Mypage extends Fragment {
                 String hotCount = c.getString(TAG_HOTCOUNT);
                 String hotclickUser = c.getString(TAG_HOTCLICKUSER);
 
-                HashMap<String, String> persons = new HashMap<String, String>();
+                HashMap<String, String> persons = new HashMap<String, String>();//해쉬맵 형태의 배열을 생성
 
+                //키워드 형식으로 데이터 저장
                 persons.put(TAG_USERID, userid);
                 persons.put(TAG_TITLE, title);
                 persons.put(TAG_CONTENT, content);
@@ -291,25 +296,26 @@ public class Mypage extends Fragment {
                 persons.put(TAG_HOTCOUNT, hotCount);
                 persons.put(TAG_HOTCLICKUSER, hotclickUser);
 
-                personList.add(persons);
+                personList.add(persons);//해쉬맵 배열을 리스트에 저장
             }
 
-            Collections.reverse(personList);
+            Collections.reverse(personList); //최근것이 보이게 배열 역순
             System.out.println(personList);
-            for(int i = 0; i < personList.size(); i++){
-                HashMap<String, String> hashMap = personList.get(i);
+            for(int i = 0; i < personList.size(); i++){ //리스트의 크기많큼 어탭터의 item저장
+                HashMap<String, String> hashMap = personList.get(i);//각 배열의 값을 해쉬맵으로 불러오기
+                //어탭터에 저장
                 MyItem myItemTemp = new MyItem(hashMap.get(TAG_USERID),hashMap.get(TAG_TITLE), hashMap.get(TAG_CONTENT), hashMap.get(TAG_COMMENTS),hashMap.get(TAG_TIME),hashMap.get(TAG_HOTCOUNT),hashMap.get(TAG_HOTCLICKUSER));
                 myItemTemp.setWhatboard(hashMap.get(TAG_WHATBOARD));
                 adapter.addItem(myItemTemp);
             }
-            Mypage_Content_list.setAdapter(adapter);
+            Mypage_Content_list.setAdapter(adapter);//리스트뷰에 어댑터 저장
 
         }catch (JSONException e){
             e.printStackTrace();
         }
     }
 
-    private void getData_content(String url) {
+    private void getData_content(String url) {//db php 주소 받음
         class GetDataJSON extends AsyncTask<String,Void,String> {
 
             @Override
@@ -317,17 +323,17 @@ public class Mypage extends Fragment {
                 String uri = params[0];
                 String userid = params[1];
                 String userschool = params[2];
-                String postParameters = "userid=" + userid + "&userSchool=" + userschool; // userSchool, Whatboard 필요함.
+                String postParameters = "userid=" + userid + "&userSchool=" + userschool; //php구문에 post 형식으로 넘길 문자열
 
                 BufferedReader bufferedReader = null;
                 try {
                     URL url = new URL(uri);
-                    HttpURLConnection con = (HttpURLConnection)url.openConnection();
+                    HttpURLConnection con = (HttpURLConnection)url.openConnection(); //url 연결
 
 
                     con.setReadTimeout(5000);
                     con.setConnectTimeout(5000);
-                    con.setRequestMethod("POST");
+                    con.setRequestMethod("POST");//post 형식으로 보냄
                     con.setDoInput(true);
                     con.connect();
 
@@ -370,12 +376,12 @@ public class Mypage extends Fragment {
             }
             @Override
             protected void onPostExecute(String result){
-                myJSON = result;
-                showList();
+                myJSON = result;//결과값을 저장
+                showList();//db에서 받은 결과값을 시간표리스트에 저장하기 위한 메서드
             }
         }
-        GetDataJSON g = new GetDataJSON();
-        g.execute(url,userID,userSchool);
+        GetDataJSON g = new GetDataJSON();//JSON형식으로 데이터 가져옴
+        g.execute(url,userID,userSchool);//url,유저아이디,학교를 파라미터로 넘김
     }
 
     private void getData_comments(String url) {
@@ -387,19 +393,19 @@ public class Mypage extends Fragment {
                 String userid = params[1];
                 String content_userSchool = params[2];
 
-                String postParameters = "userid=" + userid + "&content_userSchool=" + content_userSchool;
+                String postParameters = "userid=" + userid + "&content_userSchool=" + content_userSchool;//php구문에 post 형식으로 넘길 문자열
                 //String postParameters = "userid=" + userid;
                 System.out.println(postParameters);
 
                 BufferedReader bufferedReader = null;
                 try {
                     URL url = new URL(uri);
-                    HttpURLConnection con = (HttpURLConnection)url.openConnection();
+                    HttpURLConnection con = (HttpURLConnection)url.openConnection();//url 연결
 
 
                     con.setReadTimeout(5000);
                     con.setConnectTimeout(5000);
-                    con.setRequestMethod("POST");
+                    con.setRequestMethod("POST");//post 형식으로 보냄
                     con.setDoInput(true);
                     con.connect();
 
@@ -442,21 +448,21 @@ public class Mypage extends Fragment {
             }
             @Override
             protected void onPostExecute(String result){
-                myJSON = result;
-                showList1();
+                myJSON = result; //결과값을 저장
+                showList1();//db에서 받은 결과값을 시간표리스트에 저장하기 위한 메서드
             }
         }
-        GetDataJSON g = new GetDataJSON();
-        g.execute(url, userID, userSchool);
+        GetDataJSON g = new GetDataJSON();;//JSON형식으로 데이터 가져옴
+        g.execute(url, userID, userSchool);//url,유저아이디,학교를 파라미터로 넘김
     }
     protected void showList1(){
         try {
-            JSONObject jsonObj = new JSONObject(myJSON);
-            commentsArray = jsonObj.getJSONArray(TAG_RESPONSE);
-            System.out.println(commentsArray);
+            JSONObject jsonObj = new JSONObject(myJSON);//myJSON에 저장된 db 데이터값을 가져오기 위한 변수 생성
+            commentsArray = jsonObj.getJSONArray(TAG_RESPONSE);//db에서 넘어온값을 commentsArray의 리스트에 저장
 
-            for(int i = 0; i<commentsArray.length(); i++){
+            for(int i = 0; i<commentsArray.length(); i++){//반복문을 이용하여 게시글 리스트에 삽입
                 JSONObject c = commentsArray.getJSONObject(i);
+                //db에서 넘어온값 변수에 저장
                 String content_userid = c.getString(TAG_CONTENT_USERID);
                 String content_userSchool = c.getString(TAG_CONTENT_USERSHCOOL);
                 String content_title = c.getString(TAG_CONTENT_TITLE);
@@ -468,8 +474,9 @@ public class Mypage extends Fragment {
                 String comments = c.getString(TAG_COMMENTS_COMMENTS);
                 String time = c.getString(TAG_COMMENTS_TIME);
 
-                HashMap<String, String> persons = new HashMap<String, String>();
+                HashMap<String, String> persons = new HashMap<String, String>();//해쉬맵 형태의 배열을 생성
 
+                //키워드 형식으로 데이터 저장
                 persons.put(TAG_CONTENT_USERID, content_userid);
                 persons.put(TAG_CONTENT_USERSHCOOL, content_userSchool);
                 persons.put(TAG_CONTENT_TITLE, content_title);
@@ -485,9 +492,10 @@ public class Mypage extends Fragment {
                 System.out.println( commentsList+ "commentsList");
             }
 
-            Collections.reverse(commentsList);
-            for(int i = 0; i < commentsList.size(); i++){
-                HashMap<String, String> hashMap = commentsList.get(i);
+            Collections.reverse(commentsList);//최근것이 보이게 배열 역순
+            for(int i = 0; i < commentsList.size(); i++){//리스트의 크기많큼 어탭터의 item저장
+                HashMap<String, String> hashMap = commentsList.get(i);//각 배열의 값을 해쉬맵으로 불러오기
+                //어탭터에 저장
                 commentItem commentItemTemp = new commentItem(hashMap.get(TAG_COMMENTS_USERID), hashMap.get(TAG_COMMENTS_COMMENTS) ,hashMap.get(TAG_COMMENTS_TIME));
                 commentItemTemp.setContent_userid(hashMap.get(TAG_CONTENT_USERID));
                 commentItemTemp.setContent_userSchool(hashMap.get(TAG_CONTENT_USERSHCOOL));
@@ -497,17 +505,20 @@ public class Mypage extends Fragment {
                 commentItemTemp.setContent_time(hashMap.get(TAG_CONTENT_TIME));
                 adapter1.addItem(commentItemTemp);
             }
-            Mypage_Comments_list.setAdapter(adapter1);
+            Mypage_Comments_list.setAdapter(adapter1);//리스트뷰에 어댑터 저장
 
         }catch (JSONException e){
             e.printStackTrace();
         }
     }
+    //해당 게시글로 이동하는 메서드
+    //db php 주소 받음, 게시글 정보 받음
     private void passContent(String url, String content_useridStr, String content_titleStr, String content_contentStr, String WhatboardStr, String timeStr){
         class GetDataJSON extends AsyncTask<String,Void,String> {
 
             @Override
             protected String doInBackground(String... params) {
+                //각 파라미터의 데이터 저장
                 String uri = params[0];
                 String content_userid = params[1];
                 String content_userSchool = userSchool;
@@ -516,17 +527,17 @@ public class Mypage extends Fragment {
                 String content_Whatboard = params[4];
                 String content_time = params[5];
 
-                String postParameters = "content_userid=" + content_userid + "&content_userSchool=" + content_userSchool + "&content_title=" + content_title + "&content_content=" + content_content  +"&content_Whatboard=" + content_Whatboard + "&content_time=" + content_time;
+                //php구문에 post 형식으로 넘길 문자열
+                String postParameters = "userid=" + content_userid + "&userSchool=" + content_userSchool + "&title=" + content_title + "&content=" + content_content  +"&Whatboard=" + content_Whatboard + "&time=" + content_time;
 
                 BufferedReader bufferedReader = null;
                 try {
                     URL url = new URL(uri);
-                    HttpURLConnection con = (HttpURLConnection)url.openConnection();
-
+                    HttpURLConnection con = (HttpURLConnection)url.openConnection(); //url 연결
 
                     con.setReadTimeout(5000);
                     con.setConnectTimeout(5000);
-                    con.setRequestMethod("POST");
+                    con.setRequestMethod("POST");//post 형식으로 보냄
                     con.setDoInput(true);
                     con.connect();
 
@@ -569,52 +580,47 @@ public class Mypage extends Fragment {
             }
             @Override
             protected void onPostExecute(String result){
-                myJSON = result;
-                showList2();
+                myJSON = result; //결과값을 저장
+                showList2();//db에서 받은 결과값을 시간표리스트에 저장하기 위한 메서드
             }
         }
-        GetDataJSON g = new GetDataJSON();
-        g.execute(url, content_useridStr, content_titleStr,content_contentStr, WhatboardStr, timeStr);
+        GetDataJSON g = new GetDataJSON();//JSON형식으로 데이터 가져옴
+        g.execute(url, content_useridStr, content_titleStr,content_contentStr, WhatboardStr, timeStr);//url,게시글 정보를 파라미터로 넘김
     }
     protected void showList2(){
         try {
-            JSONObject jsonObj = new JSONObject(myJSON);
-            peoples = jsonObj.getJSONArray(TAG_RESPONSE);
+            //해당 게시글로 넘길 변수 선언
+            String userid = null;
+            String title = null;
+            String content = null;
+            String Whatboard = null;
+            String time = null;
+            String hotCount = null;
+            String hotclickUser = null;
+            JSONObject jsonObj = new JSONObject(myJSON);//myJSON에 저장된 db 데이터값을 가져오기 위한 변수 생성
+            peoples = jsonObj.getJSONArray(TAG_RESPONSE);//db에서 넘어온값을 peoples의 리스트에 저장
 
-            for(int i = 0; i<peoples.length(); i++){
+            for(int i = 0; i<peoples.length(); i++){ //반복문을 이용하여 게시글 리스트에 삽입 / db에서는 해당하는 게시글을 하나만 찾아서 옴
                 JSONObject c = peoples.getJSONObject(i);
 
-                String userid = c.getString(TAG_USERID);
-                String title = c.getString(TAG_TITLE);
-                String content = c.getString(TAG_CONTENT);
-                String Whatboard = c.getString(TAG_WHATBOARD);
-                String time = c.getString(TAG_TIME);
-                String hotCount = c.getString(TAG_HOTCOUNT);
-                String hotclickUser = c.getString(TAG_HOTCLICKUSER);
-
-                HashMap<String, String> persons = new HashMap<String, String>();
-
-                persons.put(TAG_USERID, userid);
-                persons.put(TAG_TITLE, title);
-                persons.put(TAG_CONTENT, content);
-                persons.put(TAG_WHATBOARD, Whatboard);
-                persons.put(TAG_TIME, time);
-                persons.put(TAG_HOTCOUNT, hotCount);
-                persons.put(TAG_HOTCLICKUSER, hotclickUser);
-
-                personList.add(persons);
+                //db에서 넘어온값 변수에 저장
+                userid = c.getString(TAG_USERID);
+                title = c.getString(TAG_TITLE);
+                content = c.getString(TAG_CONTENT);
+                Whatboard = c.getString(TAG_WHATBOARD);
+                time = c.getString(TAG_TIME);
+                hotCount = c.getString(TAG_HOTCOUNT);
+                hotclickUser = c.getString(TAG_HOTCLICKUSER);
             }
-
-            HashMap<String, String> hashMap = personList.get(0);
-            Intent intent = new Intent(getActivity(), Clickboard.class );
-
-            intent.putExtra("userID", hashMap.get(TAG_USERID));
-            intent.putExtra("title", hashMap.get(TAG_TITLE));
-            intent.putExtra("content",  hashMap.get(TAG_CONTENT));
-            intent.putExtra("time", hashMap.get(TAG_TIME));
-            intent.putExtra("hotCount", hashMap.get(TAG_HOTCOUNT));
-            intent.putExtra("Whatboard", hashMap.get(TAG_WHATBOARD));
-            intent.putExtra("hotclickUser", hashMap.get(TAG_HOTCLICKUSER));
+            Intent intent = new Intent(getActivity(), Clickboard.class ); //해당 게시글 넘어감.
+            //해당 게시글 정보를 넘겨줌
+            intent.putExtra("userID", userid);
+            intent.putExtra("title", title);
+            intent.putExtra("content", content);
+            intent.putExtra("time", time);
+            intent.putExtra("hotCount", hotCount);
+            intent.putExtra("Whatboard", Whatboard);
+            intent.putExtra("hotclickUser", hotclickUser);
             //finish();
             startActivity(intent);
 

@@ -7,12 +7,13 @@
     android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal">
 
+    <!-- 댓글 리스트에 들어갈 아이템 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.8"
         android:orientation="vertical">
-
+        <!-- 댓글 익명 text -->
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
@@ -27,6 +28,7 @@
             android:textIsSelectable="false"
             android:textSize="18dp" />
 
+        <!-- 댓글 내용 text -->
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
@@ -42,12 +44,14 @@
 
     </LinearLayout>
 
+    <!-- 댓글 작성된 시간 레이아웃 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2.5"
         android:orientation="vertical">
 
+        <!-- 댓글 작성된 시간 text -->
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"

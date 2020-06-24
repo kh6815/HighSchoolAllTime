@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--시간표 추가 기능 구현에서 spinner사용을 위한 배열 xml파일-->
 <resources>
     <string-array name="day">//Spiner 내 List 값이며 요일 배열
         <item>월요일</item>

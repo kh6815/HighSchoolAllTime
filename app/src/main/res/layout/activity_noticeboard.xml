@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".Noticeboard">
 
+    <!-- 공지사항 페이지 이동 버튼 -->
     <Button
         android:id="@+id/Notice_Button"
         android:layout_width="350dp"
@@ -17,6 +18,7 @@
         android:text="공지사항"
         android:textSize="20dp" />
 
+    <!-- 자유게시판 페이지 이동 버튼 -->
     <Button
         android:id="@+id/FreeBoard_Button"
         android:layout_width="350dp"
@@ -27,6 +29,7 @@
         android:text="자유게시판"
         android:textSize="20dp" />
 
+    <!-- hot 게시판 페이지 이동 버튼 -->
     <Button
         android:id="@+id/HotBoard_Button"
         android:layout_width="350dp"
@@ -37,6 +40,7 @@
         android:text="hot 게시판"
         android:textSize="20dp" />
 
+    <!-- 비밀게시판 페이지 이동 버튼 -->
     <Button
         android:id="@+id/SecretBoard_Button"
         android:layout_width="350dp"
@@ -47,6 +51,7 @@
         android:text="비밀게시판"
         android:textSize="20dp" />
 
+    <!-- 졸업생 게시판 페이지 이동 버튼 -->
     <Button
         android:id="@+id/GraduationStudentBoard_Button"
         android:layout_width="350dp"
@@ -57,6 +62,7 @@
         android:text="졸업생게시판"
         android:textSize="20dp" />
 
+    <!-- 연애게시판 페이지 이동 버튼 -->
     <Button
         android:id="@+id/LoveBoard_Button"
         android:layout_width="350dp"
@@ -67,6 +73,7 @@
         android:text="연애게시판"
         android:textSize="20dp" />
 
+    <!-- 고백 게시판 페이지 이동 버튼 -->
     <Button
         android:id="@+id/ConfessionBoard_Button"
         android:layout_width="350dp"
@@ -77,6 +84,7 @@
         android:text="고백게시판"
         android:textSize="20dp" />
 
+    <!-- 우리반 게시판 페이지 이동 버튼 -->
     <Button
         android:id="@+id/MyclassBoard_Button"
         android:layout_width="350dp"
@@ -87,6 +95,7 @@
         android:text="우리반게시판"
         android:textSize="20dp" />
 
+    <!-- 중고거래 게시판 페이지 이동 버튼 -->
     <Button
         android:id="@+id/UsedTransactionBoard_Button"
         android:layout_width="350dp"
@@ -97,6 +106,7 @@
         android:text="중고거래"
         android:textSize="20dp" />
 
+    <!--  학교 활동 버튼 레이아웃 -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,6 +115,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp">
 
+        <!-- 동아리구인 게시판 페이지 이동 버튼 -->
         <Button
             android:id="@+id/ClubBoard_Button"
             android:layout_width="wrap_content"
@@ -116,6 +127,7 @@
             android:text="동아리"
             android:textSize="20dp" />
 
+        <!-- 공모전 게시판 페이지 이동 버튼 -->
         <Button
             android:id="@+id/ContestBoard_Button"
             android:layout_width="wrap_content"
@@ -127,6 +139,7 @@
             android:text="공모전"
             android:textSize="20dp" />
 
+        <!-- 봉사 게시판 페이지 이동 버튼 -->
         <Button
             android:id="@+id/VolunteerBoard_Button"
             android:layout_width="wrap_content"
@@ -138,6 +151,7 @@
             android:text="봉사"
             android:textSize="20dp" />
 
+        <!-- 스터디 게시판 페이지 이동 버튼 -->
         <Button
             android:id="@+id/StudyBoard_Button"
             android:layout_width="wrap_content"

@@ -61,6 +61,29 @@ public class HomeTimeTableItemView extends LinearLayout {
                 case "7":
                     temp = "7교시";
                     break;
+                    //화요일일 경우
+                case "u1" :
+                    temp = "1교시";
+                    break;
+                case "u2":
+                    temp = "2교시";
+                    break;
+                case "u3":
+                    temp = "3교시";
+                    break;
+                case "u4":
+                    temp = "4교시";
+                    break;
+                case "u5":
+                    temp = "5교시";
+                    break;
+                case "u6":
+                    temp = "6교시";
+                    break;
+                case "u7":
+                    temp = "7교시";
+                    break;
+
             }
         }
         textView1.setText(temp);

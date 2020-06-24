@@ -13,13 +13,14 @@ public class Register_Schedule extends StringRequest {
     //string배열로 저장
     private Map<String, String> map;
 
-    public Register_Schedule(String userID, String WhatDate, String Todo, Response.Listener<String> listener) {
+    public Register_Schedule(String userID, String WhatDate, String Todo, String  ScheduleID, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         //map에 값넣기
         map = new HashMap<>();
         map.put("userID",userID);
         map.put("WhatDate",WhatDate);
         map.put("Todo",Todo);
+        map.put("ScheduleID", ScheduleID);
     }
     //map리턴
     @Override

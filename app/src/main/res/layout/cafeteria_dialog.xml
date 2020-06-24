@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_margin="20dp">
 
+    <!-- 오늘의 급식 text -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,6 +15,7 @@
         android:textSize="40sp"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
+    <!-- 급식 추가 text -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,18 +24,21 @@
         android:textSize="20sp"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
+    <!-- 추가할 급식 작성란 -->
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cafe_dialog_edittext"
         android:inputType="textEmailAddress"/>
 
+    <!-- 급식 추가 취소/ 확인 버튼 레이아웃 -->
     <LinearLayout
         android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:orientation="horizontal">
 
+        <!-- 급식 추가 취소 버튼 -->
         <Button
             android:id="@+id/cafe_dialog_dropbutton"
             android:layout_width="wrap_content"
@@ -43,6 +48,7 @@
             android:background="@drawable/button_shape2"
             android:text="취소" />
 
+        <!-- 급식 추가 버튼 -->
         <Button
             android:id="@+id/cafe_dialog_addbutton"
             android:layout_width="wrap_content"

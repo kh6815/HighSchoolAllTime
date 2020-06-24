@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".Join_login">
 
+    <!-- 회원가입 레이아웃! / 전체적인 색감을 넣기 위해 레이아웃으로 구성 -->
     <LinearLayout
         android:id="@+id/JoinLiner"
         android:layout_width="match_parent"
         android:layout_height="101dp"
         android:background="#596889"
         android:gravity="center">
-
+        <!-- 회원가입 text -->
         <TextView
             android:id="@+id/JoinView"
             android:layout_width="323dp"
@@ -28,6 +29,7 @@
             tools:layout_editor_absoluteY="30dp" />
     </LinearLayout>
 
+    <!-- 회원정보 학교이름 작성란-->
     <EditText
         android:id="@+id/SchoolText"
         android:layout_width="323dp"
@@ -36,12 +38,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-120dp"
         android:ems="10"
-        android:hint="학교명을 입력하세요"
+        android:hint="School name(oo고등학교)"
         android:inputType="textPersonName"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="120dp" />
 
+    <!-- 회원정보 아이디 작성란-->
     <EditText
         android:id="@+id/IDText"
         android:layout_width="250dp"
@@ -58,6 +61,7 @@
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="184dp" />
 
+    <!-- 회원정보 아이디 중복확인 버튼-->
     <Button
         android:id="@+id/IDCheckbutton"
         android:layout_width="64dp"
@@ -74,6 +78,7 @@
         tools:layout_editor_absoluteX="302dp"
         tools:layout_editor_absoluteY="177dp" />
 
+    <!-- 회원정보 비밀번호 작성란-->
     <EditText
         android:id="@+id/LoginPasswordText"
         android:layout_width="323dp"
@@ -88,6 +93,7 @@
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="251dp" />
 
+    <!-- 회원정보 비밀번호 확인 레이아웃-->
     <LinearLayout
         android:id="@+id/password_CheckTextLayout"
         android:layout_width="wrap_content"
@@ -98,6 +104,7 @@
         android:orientation="horizontal"
         android:layout_alignBottom="@id/LoginPasswordText">
 
+        <!-- 회원정보 비밀번호 확인 작성란-->
         <EditText
             android:id="@+id/password_CheckText"
             android:layout_width="323dp"
@@ -108,6 +115,7 @@
             android:inputType="textPassword"
             tools:ignore="MissingConstraints" />
 
+        <!-- 회원정보 비밀번호 확인 이미지 -->
         <ImageView
             android:id="@+id/passwordCheckImage"
             android:layout_width="40dp"
@@ -116,6 +124,7 @@
             android:scaleType="fitStart" />
     </LinearLayout>
 
+    <!-- 회원정보 이름 작성란-->
     <EditText
         android:id="@+id/LoginIDText"
         android:layout_width="323dp"
@@ -130,6 +139,7 @@
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="388dp" />
 
+    <!-- 회원정보 이메일 작성란-->
     <EditText
         android:id="@+id/EmailText"
         android:layout_width="323dp"
@@ -144,7 +154,7 @@
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="461dp" />
 
-
+    <!-- 회원정보 학년, 교사 선택 라디오 그룹 -->
     <RadioGroup
         android:id="@+id/userGrade_radioGroup"
         android:layout_width="302dp"
@@ -189,6 +199,7 @@
 
     </RadioGroup>
 
+    <!-- 회원정보 버튼-->
     <Button
         android:id="@+id/btn_register"
         android:layout_width="295dp"

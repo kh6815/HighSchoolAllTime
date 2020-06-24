@@ -25,13 +25,14 @@ import org.json.JSONObject;
 
 
 public class Main_login extends AppCompatActivity {
-    ImageButton ID_PWbutton;
-    Button Joinbutton;
+    ImageButton ID_PWbutton; //아이디 비번찾기 이미지 버튼
+    Button Joinbutton; //회원가입 버튼
 
-    EditText LoginSchoolnameText, LoginIDText, LoginPasswordText;
-    private Button btn_login;
-    CheckBox checkBox;
-    boolean checkbox_check = false;
+    EditText LoginSchoolnameText, LoginIDText, LoginPasswordText; // 학교 명, 아이디, 비번 edittext
+    private Button btn_login; //로그인 버튼
+    CheckBox checkBox; // 자동로그인 체크박스
+    boolean checkbox_check = false; //자동로그인 체크박스
+    //내부 db 변수 생성
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
@@ -41,9 +42,11 @@ public class Main_login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login);
 
+        //mine이라는 db디비 생성
         pref = getSharedPreferences("mine",MODE_PRIVATE);
         editor = pref.edit();
 
+        //xml 연결
         ID_PWbutton = findViewById(R.id.ID_PWbutton);
         Joinbutton = findViewById(R.id.Joinbutton);
 
@@ -53,6 +56,7 @@ public class Main_login extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         checkBox = findViewById(R.id.checkBox);
 
+        //아이디 비번 찾기 버튼
         ID_PWbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +64,7 @@ public class Main_login extends AppCompatActivity {
                 startActivity(intent); //액티비티 이동
             }
         });
+        //회원가입 버튼
         Joinbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +73,7 @@ public class Main_login extends AppCompatActivity {
             }
         });
 
-
+        //자동 로그인 체크박스 체크 버튼
         checkBox.setOnClickListener(new CheckBox.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +81,13 @@ public class Main_login extends AppCompatActivity {
             }
         });
 
+        //로그인 버튼
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //EditText에 현재 입력되어 있는 값을 get해온다.
 
+                //xml 값 가져오기
                 String userID = LoginIDText.getText().toString();
                 String userPassword = LoginPasswordText.getText().toString();
                 String userSchool= LoginSchoolnameText.getText().toString();
@@ -106,6 +113,7 @@ public class Main_login extends AppCompatActivity {
                                 System.out.println(userEmail);
                                 System.out.println(userGrade);
 
+                                //자동로그인 체크시 키워드로 내부 db에 저장
                                 if(checkbox_check){
                                     editor.putString("userSchool", userSchool);
                                     editor.putString("userID", userID);
@@ -115,6 +123,7 @@ public class Main_login extends AppCompatActivity {
                                     editor.commit();
                                 }
 
+                                //로그인 성공시 mainframe으로 넘어감.
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하셨습니다.",Toast.LENGTH_SHORT).show();
                                 String boardChage = "0";
                                 Intent intent = new Intent(Main_login.this, MainFrame.class );
@@ -139,6 +148,7 @@ public class Main_login extends AppCompatActivity {
                         }
                     }
                 };
+                //php 서버로 넘어감.
                 LoginRequest loginRequest = new LoginRequest(userID, userPassword, userSchool ,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(Main_login.this);
                 queue.add(loginRequest);

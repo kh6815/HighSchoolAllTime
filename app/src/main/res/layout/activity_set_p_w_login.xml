@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".SetPW_login">
 
+    <!-- 새로운 비밀번호 입력란 -->
     <EditText
         android:id="@+id/ET_SetPW_PassWord"
         android:layout_width="332dp"
@@ -17,7 +18,7 @@
         android:hint="새 PW 입력"
         android:inputType="textPassword" />
 
-
+    <!-- 새로운 비밀번호 확인란 -->
     <EditText
         android:id="@+id/ET_SetPW_IsPassWord"
         android:layout_width="332dp"
@@ -29,6 +30,7 @@
         android:inputType="textPassword"
         tools:ignore="MissingConstraints" />
 
+    <!-- 새로운 비밀번호 변경 버튼 -->
     <Button
         android:id="@+id/Btn_SetPW"
         android:layout_width="189dp"

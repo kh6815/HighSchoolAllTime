@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--앱의 주 색과 부수적인 색을 설정하는 xml파일-->
 <resources>
     <color name="colorPrimary">#596889</color>
     <color name="colorPrimaryDark">#596889</color>

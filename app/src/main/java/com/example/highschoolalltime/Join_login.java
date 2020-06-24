@@ -28,14 +28,14 @@ import org.json.JSONObject;
 
 public class Join_login extends AppCompatActivity {
 
-    private EditText IDText, PasswordText, NameText, EmailText, password_CheckText, SchoolText;
-    private RadioButton selbtn;
-    private Button btn_register, IDCheckbutton;
-    private ImageView passwordCheckImage;
+    private EditText IDText, PasswordText, NameText, EmailText, password_CheckText, SchoolText; // 회원가입에 사용할 edittext 변수
+    private RadioButton selbtn; //학년, 선생 구분 라디오버튼
+    private Button btn_register, IDCheckbutton; //회원등록 버튼, 중복방지버튼
+    private ImageView passwordCheckImage;//비밀번호 확인 체크 이미지
     private boolean validate = false;
-    private AlertDialog dialog;
-    private int PWcheck = 0, gradeCheck = 0;
-    private RadioGroup userGrade_radioGroup;
+    private AlertDialog dialog; // 다이얼로그
+    private int PWcheck = 0, gradeCheck = 0; //비밀번호가 확인 체크됬었는지 확인변수, 학년이 체크되었는지 확인 변수
+    private RadioGroup userGrade_radioGroup; // 학년 결정 라디오그룹
     private String  temp;
 
     @SuppressLint("WrongViewCast")
@@ -44,6 +44,7 @@ public class Join_login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_login);
 
+        //xml 연결
         SchoolText = findViewById(R.id.SchoolText);
         IDText = findViewById(R.id.IDText);
         PasswordText = findViewById(R.id.LoginPasswordText);
@@ -53,11 +54,12 @@ public class Join_login extends AppCompatActivity {
         EmailText = findViewById(R.id.EmailText);
         IDCheckbutton = findViewById(R.id.IDCheckbutton);
 
-        //아이디 중복체크
+        //아이디 중복체크 버튼
         IDCheckbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userID = IDText.getText().toString();
+                String userID = IDText.getText().toString(); //edittext에 있는 유저 아이디 값 변수 저장
+                //아이디 중복 확인 절차
                 if(validate){
                     return;
                 }
@@ -76,7 +78,7 @@ public class Join_login extends AppCompatActivity {
                         try {
                             JSONObject jsonResponse=new JSONObject(response);
                             boolean success=jsonResponse.getBoolean("success");
-                            if(success){
+                            if(success){ //아이디 중복이 없을 때
                                 AlertDialog.Builder builder=new AlertDialog.Builder( Join_login.this  );
                                 dialog=builder.setMessage("사용할 수 있는 아이디입니다.")
                                         .setPositiveButton("확인",null)
@@ -86,7 +88,7 @@ public class Join_login extends AppCompatActivity {
                                 validate=true;
                                 IDCheckbutton.setText("확인");
                             }
-                            else{
+                            else{ //아이디 중복 일 경우
                                 AlertDialog.Builder builder=new AlertDialog.Builder( Join_login.this  );
                                 dialog=builder.setMessage("사용할 수 없는 아이디입니다.")
                                         .setNegativeButton("확인",null)
@@ -98,6 +100,7 @@ public class Join_login extends AppCompatActivity {
                         }
                     }
                 };
+                //서버 php로 이동
                 ValidateRequest validateRequest=new ValidateRequest(userID,responseListener);
                 RequestQueue queue= Volley.newRequestQueue(Join_login.this );
                 queue.add(validateRequest);
@@ -113,11 +116,12 @@ public class Join_login extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(PasswordText.getText().toString().equals(password_CheckText.getText().toString()) || PasswordText.getText().toString().length() > 5) {
+                //비밀번호가 일치할 경우
+                if(PasswordText.getText().toString().equals(password_CheckText.getText().toString()) && PasswordText.getText().toString().length() > 5) {
                     passwordCheckImage.setImageResource(R.drawable.odraw);
                     PWcheck = 1;
                 }
-                else{
+                else{//비밀번호 불일치 일 경우
                     passwordCheckImage.setImageResource(R.drawable.xdraw);
                     PWcheck = 0;
                 }
@@ -128,13 +132,13 @@ public class Join_login extends AppCompatActivity {
 
             }
         });
-
+        // 학년 선택 라디오 그룹 xml 연결
         userGrade_radioGroup = (RadioGroup) findViewById(R.id.userGrade_radioGroup);
         userGrade_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                temp = (String) ((RadioButton)findViewById(checkedId)).getText();
-                gradeCheck = 1;
+                temp = (String) ((RadioButton)findViewById(checkedId)).getText(); //선택한 학년 id값 가져오기
+                gradeCheck = 1; // 학년 선택 확인 완료 변수
             }
         });
 
@@ -146,6 +150,7 @@ public class Join_login extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //회원가입 전 정보가 잘 입력되어있는지 확인 절차 수행
                 if(PasswordText.getText().toString().equals(password_CheckText.getText().toString())) {
 
                 }
@@ -158,6 +163,7 @@ public class Join_login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"가입정보를 정확히 확인하십시오(중복확인, 비밀번호 5자리 이상)",Toast.LENGTH_SHORT).show();
                     return;
                 }
+                //가입정보 가져오기
                 String userID = IDText.getText().toString();
                 String userPassword = PasswordText.getText().toString();
                 String userSchool = SchoolText.getText().toString();

@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -80,6 +81,8 @@ public class Free_Board extends AppCompatActivity {
 
     MyAdapter adapter; //리스트 뷰에 저장할 어댑터 변수
     String userName,userGrade, userEmail; //유저 정보
+
+    ImageButton rebtn; //새로고침 하기 위한 버튼
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,7 +146,22 @@ public class Free_Board extends AppCompatActivity {
             }
         });
 
+        rebtn = findViewById(R.id.imagereButton); //새로고침 버튼 이미지 버튼 링크
+        rebtn.setOnClickListener(new View.OnClickListener() { //버튼 클릭 이벤트
+            @Override
+            public void onClick(View view) {
+                //리스트 초기화
+                personList = null;
+                adapter = null;
 
+                personList = new ArrayList<HashMap<String, String>>();//리스트 생성
+                adapter = new MyAdapter();//어댑터 생성
+
+                //다시 db 데이터 가져오기
+                getData("http://wkwjsrjekffk.dothome.co.kr/BoardSet1.php"); //php파일이름 작성
+                list.setAdapter(adapter);
+            }
+        });
 
     }
 

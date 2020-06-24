@@ -157,7 +157,7 @@ public class AddTimeTableActivity extends Fragment {
                     e.printStackTrace();
                 }
             }
-        };//DB 삭제
+        };//Delete_Time.php 호출
         Delete_Time delete_time = new Delete_Time(sub, userId, reponseListener);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         queue.add(delete_time);
@@ -189,7 +189,9 @@ public class AddTimeTableActivity extends Fragment {
                 HashMap<String, String> hashMap = personList.get(i);//각 배열의 값을 해쉬맵으로 불러오기
                 String sub = hashMap.get(TAG_SUBJECT);
                 String pos = hashMap.get(TAG_POSITION);
-                switch (pos) {//Switch문을 이용해 문자열과 Layout 내 TextView ID 값들과 비교해 TextView ID값을 정의, <m:월, t:화, w:수, tu:목, f:금>, 문자열 제일 뒤는 수강 시간으로 ID값을 지정
+                //Switch문을 이용해 문자열과 Layout 내 TextView ID 값들과 비교해 TextView ID값을 정의
+                    // <m:월, t:화, w:수, tu:목, f:금>, 문자열 제일 뒤는 수강 시간으로 ID값을 지정
+                switch (pos) {
                     case "tv_result_m1":
                         tv_result = view.findViewById(R.id.tv_result_m1);
                         break;
@@ -408,7 +410,9 @@ public class AddTimeTableActivity extends Fragment {
                         sub = sub + (i + 1);
                     }
                 }//for문을 이용해 반복적으로 임시 저장한 수강시간 값을 요일 배열과 비교해 참인 경우 문자열 뒤에 추가
-                switch (sub) {//Switch문을 이용해 문자열과 Layout 내 TextView ID 값들과 비교해 TextView ID값을 정의, <m:월, t:화, w:수, tu:목, f:금>, 문자열 제일 뒤는 수강 시간으로 ID값을 지정
+                //Switch문을 이용해 문자열과 Layout 내 TextView ID 값들과 비교해 TextView ID값을 정의
+                    // <m:월, t:화, w:수, tu:목, f:금>, 문자열 제일 뒤는 수강 시간으로 ID값을 지정
+                switch (sub) {
                     case "tv_result_m1":
                         tv_result = view.findViewById(R.id.tv_result_m1);
                         break;
@@ -538,6 +542,7 @@ public class AddTimeTableActivity extends Fragment {
                     }
 
                 };
+                //TimeTable_Request.php 호출
                 TimeTable_Request timetable_request = new TimeTable_Request(sub, userId, reponseListener);
                 RequestQueue queue = Volley.newRequestQueue(getActivity());
                 queue.add(timetable_request);
@@ -565,6 +570,7 @@ public class AddTimeTableActivity extends Fragment {
                         }
                     }
                 };
+                //Update_Time.php 호출
                 Update_Time update_time = new Update_Time(sub_text, sub, userId, reponseListener);
                 RequestQueue queue = Volley.newRequestQueue(getActivity());
                 queue.add(update_time);
@@ -589,6 +595,7 @@ public class AddTimeTableActivity extends Fragment {
                         }
                     }
                 };
+                //Register_Time.php 호출
                 Register_Time register_time = new Register_Time(sub_text, sub, userId, reponseListener);
                 RequestQueue queue = Volley.newRequestQueue(getActivity());
                 queue.add(register_time);

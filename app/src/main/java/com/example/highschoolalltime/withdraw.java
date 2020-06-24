@@ -2,7 +2,9 @@ package com.example.highschoolalltime;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,9 @@ public class withdraw extends AppCompatActivity {
     private EditText edt_ID, edt_PW;
     private Button btn_delet;
     private String userID, userPassword;
+    //자동로그인 할때 저장된 내부db를 로그아웃이나 회원탈퇴 할때 삭제 하기 위해 가져옴
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,9 @@ public class withdraw extends AppCompatActivity {
         //use_user의 ID값과 Password값을 가져온다.
         userID = ((use_user)this.getApplication()).getUserID();
         userPassword = ((use_user)this.getApplication()).getUserPassword();
+        //내부 db 가져오기
+        pref = getApplication().getSharedPreferences("mine", Context.MODE_PRIVATE);
+        editor = pref.edit();
         //회원탈퇴버튼 눌렀을때
         btn_delet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +60,9 @@ public class withdraw extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),
                                         "정상적으로 회원탈퇴 처리되었습니다.",
                                         Toast.LENGTH_SHORT).show();
+                                //내부 db 내용 삭제
+                                editor.clear();
+                                editor.commit();
                                 //다시 login패이지로 전환(현재는 login패이지가 없으므로 cafeteria로 대체)
                                 Intent intent = new Intent(withdraw.this, Main_login.class);
                                 finish();

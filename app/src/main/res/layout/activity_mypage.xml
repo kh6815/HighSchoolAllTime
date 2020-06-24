@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Mypage">
-
+    <!-- 마이페이지 유저 이름 / 아이디-->
     <TextView
         android:id="@+id/TextView_Mypage_ShowID"
         android:layout_width="match_parent"
@@ -15,6 +15,7 @@
         android:text="이름(ID)"
         android:textSize="30sp"></TextView>
 
+    <!-- 마이페이지 버튼 레이아웃-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +23,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         >
-
+        <!-- 마이페이지 로그아웃 버튼-->
         <Button
             android:id="@+id/Button_Mypage_Logout"
             android:layout_width="160dp"
@@ -31,7 +32,7 @@
             android:background="@drawable/button_shape"
             android:text="로그아웃"
             android:textSize="24sp"></Button>
-
+        <!-- 마이페이지 회원탈퇴 버튼-->
         <Button
             android:id="@+id/Button_Mypage_Withdraw"
             android:layout_width="160dp"
@@ -41,7 +42,7 @@
             android:background="@drawable/button_shape1"
             android:text="회원탈퇴"
             android:textSize="24sp"></Button>
-
+        <!-- 마이페이지 정보변경 버튼-->
         <Button
             android:id="@+id/Button_Mypage_Change"
             android:layout_width="160dp"
@@ -51,6 +52,8 @@
             android:background="@drawable/button_shape2"
             android:textSize="24sp"></Button>
     </LinearLayout>
+
+    <!-- 내가 쓴글 text -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,12 +62,14 @@
         android:text="내가 쓴 글"
         android:textSize="20sp"></TextView>
 
+    <!-- 내가 쓴글 리스트뷰 -->
     <ListView
         android:id="@+id/ListView_Mypage_Content"
         android:layout_width="match_parent"
         android:layout_height="219dp"
         android:layout_margin="10dp" />
 
+    <!-- 내가 쓴 댓글 text -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,6 +78,7 @@
         android:text="내가 쓴 댓글"
         android:textSize="20sp"></TextView>
 
+    <!-- 내가 쓴 댓글 리스트뷰 -->
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

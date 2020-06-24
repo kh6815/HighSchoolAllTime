@@ -7,12 +7,24 @@
     tools:context=".Hot_Board"
     android:orientation="vertical">
 
+    <!-- 게시글이 적힐 리스트뷰-->
     <ListView
         android:id="@+id/notice_board_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imagereButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <!-- 새로고침 이미지 버튼 -->
+    <ImageButton
+        android:id="@+id/imagereButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom|left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/stat_notify_sync" />
 </androidx.constraintlayout.widget.ConstraintLayout>

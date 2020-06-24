@@ -11,11 +11,11 @@ import java.util.Map;
 public class RegisterRequest_Board extends StringRequest {
     //서버 URL 설정( PHP  파일 연동)
     final  static  private  String URL = "http://wkwjsrjekffk.dothome.co.kr/Register_Board.php";
-    private Map<String, String> map;
+    private Map<String, String> map;//string배열로 저장
 
     public RegisterRequest_Board(String userid, String userSchool ,String title, String content , String comments, String Whatboard, String time, String hotCount,String hotclickUser,Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
-
+        //map에 값넣기
         map = new HashMap<>();
         map.put("userid", userid);
         map.put("userSchool", userSchool);
@@ -27,7 +27,7 @@ public class RegisterRequest_Board extends StringRequest {
         map.put("hotCount", hotCount);
         map.put("hotclickUser", hotclickUser);
     }
-
+    //map리턴
     @Override
     protected Map<String, String> getParams() throws AuthFailureError {
         return map;

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.highschoolalltime">
-
+    <!--icon은 drawble파일의 icon.png를 사용,
+            usesCleartextTraffic="true"는 php파일의 접근이 용이하게 하기 위한 코드-->
     <application
         android:name=".use_user"
         android:allowBackup="true"
@@ -11,7 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ScheduleActivity"></activity>
+        <activity android:name=".Study_Board"></activity>
+        <activity android:name=".Volunteer_Board" />
+        <activity android:name=".Contest_Board" />
+        <activity android:name=".Club_Board" />
+        <activity android:name=".UsedTransaction_Board" />
+        <activity android:name=".Myclass_Board" />
+        <activity android:name=".Confession_Board" />
+        <activity android:name=".Love_Board" />
+        <activity android:name=".GraduationStudent_Board" />
+        <activity android:name=".Secret_Board" />
+        <activity android:name=".ScheduleActivity" />
         <activity android:name=".Loading">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,12 +45,12 @@
         <activity android:name=".Notice_Board" />
         <activity android:name=".Noticeboard" />
         <activity android:name=".Activity_Home" />
-        <activity android:name=".Main_login"></activity>
+        <activity android:name=".Main_login" />
         <activity android:name=".Find_IDPW_login" />
         <activity android:name=".Join_login" />
         <activity android:name=".SetPW_login" />
     </application>
-
+    <!--php파일에 접근하기 위해 필요한 코드-->
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

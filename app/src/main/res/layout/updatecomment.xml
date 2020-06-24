@@ -7,7 +7,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp">
 
-
+    <!-- 댓글 수정버튼 -->
     <Button
         android:id="@+id/buttonCanlcel"
         android:layout_width="58dp"
@@ -18,6 +18,7 @@
         android:background="@drawable/button_shape2"
         android:text="취소" />
 
+    <!-- 댓글 text -->
     <TextView
         android:id="@+id/textview_title_write"
         android:layout_width="135dp"
@@ -25,6 +26,8 @@
         android:layout_marginBottom="16dp"
         android:text="댓글"
         android:textSize="40sp" />
+
+    <!-- 댓글 수정 text -->
     <TextView
         android:id="@+id/textview"
         android:layout_width="50dp"
@@ -36,6 +39,7 @@
         android:layout_marginTop="20dp"
         android:textSize="20sp" />
 
+    <!-- 댓글 수정 버튼 -->
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="58dp"
@@ -46,6 +50,7 @@
         android:layout_toRightOf="@id/textview_title_write"
         android:text="수정" />
 
+    <!-- 댓글 수정할 내용란 -->
     <EditText
         android:id="@+id/EditText_comment"
         android:layout_width="388dp"

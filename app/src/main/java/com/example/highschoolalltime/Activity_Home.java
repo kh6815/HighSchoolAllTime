@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +30,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.highschoolalltime.domain.DayInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,8 +53,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class Activity_Home extends Fragment {
-    ListView myScheList,timeList; // 스케줄과 시간표 리스트 변수 선언
-    String weekDay, myJSON, userId, userSchool , WhatBoard = "Notice_Board", date; // 해당요일변수, DB에서 받아온 값을 저장할 변수, 유저 아이디변수, 유저학교, 공지사항을 db에서 가져오기위한 보드변수선언
+    ListView schedulelist,timeList; // 스케줄과 시간표 리스트 변수 선언
+    String weekDay, myJSON, userId, userSchool , WhatBoard = "Notice_Board", date , WhatDate; // 해당요일변수, DB에서 받아온 값을 저장할 변수, 유저 아이디변수, 유저학교, 공지사항을 db에서 가져오기위한 보드변수선언, 해당요일 변수
     TextView cafeteria; // 급식표 변수선언
     TextView Time_Day_Date_textView; //해당요일 변수선언
 
@@ -71,7 +73,17 @@ public class Activity_Home extends Fragment {
     String Notice = ""; //textview에 띄워줄 공지사항 문자열
     TextView Alarm_textView; // 공지사항문자열을 넣을 텍스트뷰 생성
 
-    Button myWork_btn; // 나의 스케줄 추가 버튼
+    Button TimeWork_Button, myWork_btn; // 시간표 추가 버튼, 나의 스케줄 추가 버튼
+
+    private ArrayList<DayInfo> mDayList;
+    //DB접근을 위한 변수 지정.
+    ArrayList<HashMap<String, String>> TodoList;//HashMap 배열
+    //일정listview의 adapter 지정.
+    private ScheduleAdapter adapter1;
+    private static final String TAG_Todo = "Todo";//DB 스키마
+    private static final String TAG_WhatDate = "WhatDate";//DB 스키마
+    private static final String TAG_ScheduleID = "ScheduleID";//DB 스키마
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,9 +111,30 @@ public class Activity_Home extends Fragment {
                 startActivity(intent); //액티비티 이동
             }
         });
+        //시간표 추가 버튼 링크
+        TimeWork_Button = view.findViewById(R.id.TimeWork_Button);
+        TimeWork_Button.setOnClickListener(new View.OnClickListener() { //시간표 추가버튼 이벤트
+            @Override
+            public void onClick(View view) {
+                MainFrame mainFrame = (MainFrame) getActivity(); //메인프레임 연결
+                mainFrame.setFrag(1);//시간표 프래그먼트 띄워줌
+            }
+        });
+
+        //할일
+        Calendar calendar = Calendar.getInstance(); // 캘린더 데이터 가져오기
+        calendar = Calendar.getInstance();//calendar에서 값을 가져오기 위한 코드.
+        WhatDate = calendar.get(Calendar.YEAR) + "년" + (calendar.get(Calendar.MONTH) + 1) + "월" +
+                calendar.get(Calendar.DAY_OF_MONTH) + "일";//'yyyy'년'mm'월'dd'일 형식의 string값.
+        mDayList = new ArrayList<DayInfo>();
+        TodoList = new ArrayList<HashMap<String, String>>();
+        schedulelist = view.findViewById(R.id.mySche);//activity_schedule의 listview를 가져옴.
+        adapter1 = new ScheduleAdapter();//adapter설정.
+        getData2("http://highschool.dothome.co.kr/ScheduleTable.php", WhatDate);//whatdate(오늘 날짜)에 저장된 DB값을 가져온다.
+
         //시간표
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault()); //요일 데이터 , 형식 불러오기
-        Calendar calendar = Calendar.getInstance(); // 캘린더 데이터 가져오기
+        calendar = Calendar.getInstance(); // 캘린더 데이터 가져오기
         weekDay = dayFormat.format(calendar.getTime()); //해당요일 데이터 저장
         switch (weekDay) {//Switch문을 이용해 문자열과 Layout 내 TextView ID 값들과 비교해 TextView ID값을 정의, <m:월, tu:화, w:수, t:목, f:금>, 문자열 제일 뒤는 수강 시간으로 ID값을 지정
             case "월요일":
@@ -131,6 +164,7 @@ public class Activity_Home extends Fragment {
         subjectList = new ArrayList<HashMap<String, String>>(); //과목 리스트 생성
         timeList = view.findViewById(R.id.myTimetable); //시간표 리스트 링크
         adapter = new HomeTimeAdapter(); //어댑터 생성
+        peoples = null; // 배열 초기화
         getData("http://highschool.dothome.co.kr/HomegetTimeTable.php", result); //db에 시간표 데이터 넘겨받을 함수
 
         Time_Day_Date_textView = view.findViewById(R.id.Time_Day_Date_textView); //해당 년도,몇월,몇일 textview 링크
@@ -197,6 +231,145 @@ public class Activity_Home extends Fragment {
 
 
         return view;
+    }
+
+    //ScheduleAdapter구현
+    class ScheduleAdapter extends BaseAdapter {
+        private ArrayList<Scheduleitem> items = new ArrayList<>();//배열생성
+        //Scheduleitem class에 item넣기
+        public void addItem(Scheduleitem item) {
+            items.add(item);
+        }
+
+        @Override
+        public int getCount() {
+            return items.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return items.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(final int position, final View convertView, ViewGroup parent) {
+            ScheduleitemView view = new ScheduleitemView(getContext());//ScheduleitemView 클래스 가져옴.
+            Scheduleitem item = items.get(position);
+            view.setTodo(item.getTodo());//item의 일정을 view로 넘겨줌.
+            return view;
+        }
+    }
+    //DB에서 받아온 값들을 list에 저장하는 메소드
+    protected void showList2() {
+        try {
+            JSONObject jsonObj = new JSONObject(myJSON);//myJSON에 저장된 db 데이터값을 가져오기 위한 변수 생성
+            peoples = jsonObj.getJSONArray(TAG_RESPONSE);//db에서 넘어온값을 peoples의 리스트에 저장
+
+            for (int i = 0; i < peoples.length(); i++) { //반복문을 이용하여 게시글 리스트에 삽입
+                JSONObject c = peoples.getJSONObject(i);
+                //db에서 넘어온값 변수에 저장
+                String todo = c.getString(TAG_Todo);
+                String whatdate = c.getString(TAG_WhatDate);
+                String scheduleid = c.getString(TAG_ScheduleID);
+
+                HashMap<String, String> persons = new HashMap<String, String>();//해쉬맵 형태의 배열을 생성
+                //키워드 형식으로 데이터 저장
+                persons.put(TAG_Todo, todo);
+                persons.put(TAG_WhatDate, whatdate);
+                persons.put(TAG_ScheduleID, scheduleid);
+
+                TodoList.add(persons);//해쉬맵 배열을 리스트에 저장
+            }
+            System.out.println(TodoList);//출력값 확인
+            System.out.println(TodoList.size());//리스트 사이즈값 확인
+
+            for (int i = 0; i < TodoList.size(); i++) {//리스트의 크기많큼 어탭터의 item저장
+                HashMap<String, String> hashMap = TodoList.get(i);//각 배열의 값을 해쉬맵으로 불러오기
+                //어탭터에 저장
+                adapter1.addItem(new Scheduleitem(hashMap.get(TAG_Todo), hashMap.get(TAG_WhatDate),
+                        hashMap.get(TAG_ScheduleID)));
+            }
+            schedulelist.setAdapter(adapter1);//게시글 리스트뷰에 어댑터 저장
+
+            if (TodoList.size() < 1) {
+                adapter1.addItem(new Scheduleitem("일정을 추가하세요", "", ""));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    //DB에 저장된 값들을 가져오기 위한 메소드
+    void getData2(String url, String WhatDate) {//db php 주소 받음
+        class GetDataJSON extends AsyncTask<String, Void, String> {
+            @Override
+            protected String doInBackground(String... params) {
+                //각 파라미터의 데이터 저장
+                String uri = params[0];
+                String userID = params[1];
+                String Day = params[2];
+                String postParameters = "userID=" + userID + "&Day=" + Day;//php구문에 post 형식으로 넘길 문자열
+
+                BufferedReader bufferedReader = null;
+                try {
+                    URL url = new URL(uri);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();//url 연결
+
+
+                    con.setReadTimeout(5000);
+                    con.setConnectTimeout(5000);
+                    con.setRequestMethod("POST");//post 형식으로 보냄
+                    con.setDoInput(true);
+                    con.connect();
+
+
+                    OutputStream outputStream = con.getOutputStream();
+                    outputStream.write(postParameters.getBytes("UTF-8"));
+                    outputStream.flush();
+                    outputStream.close();
+
+
+                    int responseStatusCode = con.getResponseCode();
+                    Log.d(TAG, "response code - " + responseStatusCode);
+
+                    InputStream inputStream = con.getInputStream();
+                    if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                        inputStream = con.getInputStream();
+                    } else {
+                        inputStream = con.getErrorStream();
+                    }
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+
+
+                    StringBuilder sb = new StringBuilder();
+
+                    bufferedReader = new BufferedReader(inputStreamReader);
+                    String json;
+                    while ((json = bufferedReader.readLine()) != null) {
+                        sb.append(json + "\n");
+                    }
+                    bufferedReader.close();
+                    inputStream.close();
+                    con.disconnect();
+
+                    return sb.toString().trim();
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                myJSON = result;//결과값을 저장
+                showList2();//db에서 받은 결과값을 시간표리스트에 저장하기 위한 메서드
+            }
+        }
+        GetDataJSON g = new GetDataJSON();//JSON형식으로 데이터 가져옴
+        g.execute(url, userId, WhatDate); //url, userID, 날짜를 파라미터로 넘김.
     }
 
     //시간표 리스트에 등록할 어댑터 클래스

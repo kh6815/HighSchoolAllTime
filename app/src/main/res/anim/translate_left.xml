@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--공지사항 우에서 좌로 이동하는 애니매이션 xml파일.-->
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:interpolator="@android:anim/accelerate_decelerate_interpolator">
     <translate android:fromXDelta="100%p"
         android:toXDelta="-100%p"
         android:duration="9000"
         android:repeatCount="infinite"
-        android:fillAfter="false"/>
+        android:fillAfter="false"/><!--fromXDelta는 시작할때 x좌표의 위치, duration은 지속시간(9초),
+        repeatCount는 반복횟수(무한), fillAfter는 종료 후 상태 유지 여부(false=원래 위치 이동)-->
 </set>

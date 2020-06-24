@@ -1,36 +1,32 @@
 <resources>
-
-    <!-- Base application theme. -->
+    <!-- Base application theme.-->
     <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item><!--windowActionBar를 지웠다.-->
+        <item name="windowNoTitle">true</item><!--windowTitle을 지웠다.-->
+        <!--font파일의 나눔글씨체를 기본 폰트로 사용하기 위해 각 item에 font지정.-->
         <item name="android:buttonStyle">@style/font_style_ButtonStyle</item>
         <item name="android:editTextStyle">@style/font_style_EditTextStyle</item>
         <item name="android:radioButtonStyle">@style/font_style_RadioButtonStyle</item>
         <item name="android:checkboxStyle">@style/font_style_CheckboxStyle</item>
         <item name="android:textViewStyle">@style/font_style_TextViewStyle</item>
-</style>
-
+    </style>
+    <!--font파일의 나눔글씨체를 기본 폰트로 사용하기 위해 각 item에 font저장.-->
     <style name="font_style_TextViewStyle" parent="@android:style/Widget.DeviceDefault.TextView">
         <item name="android:fontFamily">@font/nanumsquareroundb</item>
     </style>
-
     <style name="font_style_ButtonStyle" parent="@android:style/Widget.DeviceDefault.Button.Borderless">
         <item name="android:fontFamily">@font/nanumsquareroundb</item>
     </style>
-
     <style name="font_style_EditTextStyle" parent="@android:style/Widget.DeviceDefault.EditText">
         <item name="android:fontFamily">@font/nanumsquareroundb</item>
     </style>
-
     <style name="font_style_RadioButtonStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
         <item name="android:fontFamily">@font/nanumsquareroundb</item>
     </style>
-
     <style name="font_style_CheckboxStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox">
         <item name="android:fontFamily">@font/nanumsquareroundb</item>
     </style>

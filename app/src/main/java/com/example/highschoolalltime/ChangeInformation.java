@@ -2,7 +2,9 @@ package com.example.highschoolalltime;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,10 +33,19 @@ public class ChangeInformation extends AppCompatActivity {
     //login된 user의 정보(use_user)를 가져오기 위한 변수 선언.
     String userID, userSchool, userEmail, userGrade, userPW, userName;
     String new_userGrade;//학년을 변경할 때 radiobutton으로 가져올 String변수 지정.
+
+    //자동로그인 할때 저장된 내부db를 로그아웃이나 회원탈퇴 할때 삭제 하기 위해 가져옴
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_information);
+        //내부 db 가져오기
+        pref = getApplication().getSharedPreferences("mine", Context.MODE_PRIVATE);
+        editor = pref.edit();
+
         //activity_change_information의 속성들을 id를 통해 가져옴.
         tv_title = findViewById(R.id.TextView_ChInform_title);
         tv_grade = findViewById(R.id.TextView_ChInform_userGrade);
@@ -110,6 +121,8 @@ public class ChangeInformation extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),
                                         "정상적으로 정보가 수정되었습니다.",
                                         Toast.LENGTH_SHORT).show();
+                                editor.clear();
+                                editor.commit();
                                 //mypage로 전환
                                 Intent intent = new Intent(ChangeInformation.this, Main_login.class);
                                 finish();

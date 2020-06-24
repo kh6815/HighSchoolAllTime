@@ -10,11 +10,11 @@ import java.util.Map;
 public class UpdateRequest_Comment extends StringRequest {
     //서버 URL 설정( PHP  파일 연동)
     final  static  private  String URL = "http://wkwjsrjekffk.dothome.co.kr/Update_Comments.php";
-    private Map<String, String> map;
+    private Map<String, String> map;//string배열로 저장
     public UpdateRequest_Comment(String content_userid, String content_userSchool , String content_title, String content_content , String content_Whatboard, String content_time, String userid,String comments, String time ,Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
-
+        //map에 값넣기
         map = new HashMap<>();
         map.put("content_userid", content_userid);
         map.put("content_userSchool", content_userSchool);
@@ -26,7 +26,7 @@ public class UpdateRequest_Comment extends StringRequest {
         map.put("comments", comments);
         map.put("time", time);
     }
-
+    //map리턴
     @Override
     protected Map<String, String> getParams() throws AuthFailureError {
         return map;

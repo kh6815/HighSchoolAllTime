@@ -7,12 +7,14 @@
     android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal">
 
+    <!-- 게시글 리스트의 게시글 주 내용 레이아웃 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:orientation="vertical">
 
+        <!-- 게시글 리스트의 게시글 제목 -->
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
@@ -27,6 +29,7 @@
             android:textIsSelectable="false"
             android:textSize="24dp" />
 
+        <!-- 게시글 리스트의 게시글 내용 -->
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
@@ -39,15 +42,16 @@
             android:textColor="#666666"
             android:textIsSelectable="false"
             android:textSize="16dp" />
-
     </LinearLayout>
 
+    <!-- 게시글 리스트의 게시글 부가 정보 레이아웃 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:orientation="vertical">
 
+        <!-- 게시글 리스트의 게시글 추천 수 -->
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
@@ -63,6 +67,7 @@
             android:textIsSelectable="false"
             android:textSize="15dp" />
 
+        <!-- 게시글 리스트의 게시글 댓글 수 -->
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
@@ -78,6 +83,7 @@
             android:textIsSelectable="false"
             android:textSize="15dp" />
 
+        <!-- 게시글 리스트의 게시글이 쓰여진 시간 -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

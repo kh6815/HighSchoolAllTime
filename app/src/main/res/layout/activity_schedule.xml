@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--일정 디자인 xml-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Cafeteria"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Cafeteria">
+    <!--constraint layout 사용-->
 
-    <!--tablelayout을 사용해 cafeteria 다자인-->
+
     <TableLayout
-        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tableLayout4"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="25dp"
-        android:stretchColumns="*">
+        android:stretchColumns="*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
+        tools:ignore="MissingConstraints">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center">
             <!--지난달 버튼-->
             <Button
@@ -34,23 +41,29 @@
                 android:gravity="center"
                 android:text="몇년 몇월"
                 android:textSize="37sp" />
-
+            <!--다음달 버튼-->
             <Button
                 android:id="@+id/gv_calendar_activity_b_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_keyboard_arrow_right_black_24dp"
                 android:textSize="20sp" />
-
-            <!--다음달 버튼-->
-
         </TableRow>
     </TableLayout>
     <!--요일 디자인-->
     <TableLayout
-        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:id="@+id/tableLayout2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:stretchColumns="*">
+        android:stretchColumns="*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.054"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout4"
+        app:layout_constraintBottom_toTopOf="@+id/gv_calendar_activity_gv_calendar"
+        tools:ignore="MissingConstraints">
 
         <TableRow
             android:layout_width="match_parent"
@@ -59,7 +72,7 @@
             <TextView
                 android:id="@+id/cafe_sun"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="일"
                 android:textColor="@android:color/holo_red_dark"
@@ -68,7 +81,7 @@
             <TextView
                 android:id="@+id/cafe_mon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="월"
                 android:textColor="@android:color/black"
@@ -77,7 +90,7 @@
             <TextView
                 android:id="@+id/cafe_tues"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="화"
                 android:textColor="@android:color/black"
@@ -86,7 +99,7 @@
             <TextView
                 android:id="@+id/cafe_wednes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="수"
                 android:textColor="@android:color/black"
@@ -95,7 +108,7 @@
             <TextView
                 android:id="@+id/cafe_thurs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="목"
                 android:textColor="@android:color/black"
@@ -104,7 +117,7 @@
             <TextView
                 android:id="@+id/cafe_fri"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="금"
                 android:textColor="@android:color/black"
@@ -113,37 +126,71 @@
             <TextView
                 android:id="@+id/cafe_satur"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="토"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="30sp" />
         </TableRow>
     </TableLayout>
+    <!--일정 띄어주는 listview-->
+    <ListView
+        android:id="@+id/ListView_Schedule_Content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:ignore="MissingConstraints">
 
-    <!--달력gridview 일주일은7이기떄문에 colums를 7로설정-->
+    </ListView>
+    <!--달력gridview (일주일은7이기떄문에 colums를 7로설정)-->
     <GridView
-        android:background="@drawable/gv_cafe_day"
         android:id="@+id/gv_calendar_activity_gv_calendar"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:background="@drawable/gv_cafe_day"
         android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:listSelector="@drawable/gridview_selector"
         android:numColumns="7"
-        android:stretchMode="columnWidth">
-    </GridView>
+        android:stretchMode="columnWidth"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
+        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="오늘의 일정"
-        android:textSize="20dp" />
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/ListView_Schedule_Content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gv_calendar_activity_gv_calendar"
+        tools:ignore="MissingConstraints">
+        <!--며칠의 일정인지 textview로 띄움-->
+        <TextView
+            android:id="@+id/tv_schedule_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="오늘의 일정"
+            android:textSize="25sp" />
+        <!--일정 추가 버튼-->
+        <Button
+            android:id="@+id/Button_Schedule_Add"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="4"
+            android:background="@drawable/button_shape1"
+            android:text="+"
+            android:textSize="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_schedule_today"
-        android:text="일정이 없습니다." />
-
-
-</LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

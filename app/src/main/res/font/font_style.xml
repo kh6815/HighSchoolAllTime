@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--font 설정을 위한 xml파일-->
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
 
     <font
         android:font="@font/nanumsquareroundb"
         android:fontStyle="normal"
         android:fontWeight="400"
-        />
+        /><!--font 파일에 저장된 폰트를 가져오고 스타일과 글씨 두께를 설정한다.-->
 </font-family>

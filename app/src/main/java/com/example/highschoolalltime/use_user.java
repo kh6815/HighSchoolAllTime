@@ -4,6 +4,7 @@ import android.app.Application;
 
 public class use_user extends Application {
 
+    //여러 클래스 사용할 유저 정보값 저장
     private  String userID;
     private  String userSchool;
     private  String userName;

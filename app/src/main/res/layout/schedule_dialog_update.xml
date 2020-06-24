@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20dp">
+
+    <!-- 오늘의 일정 수정 text -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/schedule_dialog_update_title"
+        android:text="오늘의 일정"
+        android:textSize="40sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <!-- 수정할 일정 text -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="수정할 일정을 입력하세요"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <!-- 수정할 내용 작성란 -->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/schedule_dialog_update_edittext" />
+
+    <!-- 일정 수정 취소 / 일정 수정 버튼 레이아웃  -->
+    <LinearLayout
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="horizontal">
+
+        <!-- 일정 수정 취소 버튼 -->
+        <Button
+            android:id="@+id/schedule_dialog_update_dropbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape2"
+            android:text="취소" />
+
+        <!-- 일정 수정 버튼 -->
+        <Button
+            android:id="@+id/schedule_dialog_update_updtbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_shape1"
+            android:text="수정" />
+    </LinearLayout>
+
+</LinearLayout>

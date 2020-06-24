@@ -7,6 +7,7 @@
     tools:context=".Free_Board"
     android:orientation="vertical">
 
+    <!-- 게시글이 적힐 리스트뷰-->
     <ListView
         android:id="@+id/notice_board_list"
         android:layout_width="0dp"
@@ -17,6 +18,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- 새로고침 이미지 버튼 -->
+    <ImageButton
+        android:id="@+id/imagereButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom|left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Addbutton"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notice_board_list"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/stat_notify_sync" />
+
+    <!-- 자유게시판에 글 작성 버튼-->
     <Button
         android:id="@+id/Addbutton"
         android:layout_width="76dp"

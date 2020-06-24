@@ -16,15 +16,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainFrame extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavigationView; //하단바
+    private BottomNavigationView bottomNavigationView; //하단 메뉴바
     private FragmentManager fm;
     private FragmentTransaction ft;
     private Activity_Home activity_home;
-    private Noticeboard noticeboard;
-    public String userID, userPassword,userSchool, userName, userEmail, userGrade, boardChage;
-    TextView SchoolName_textView;
-    private Cafeteria cafeteria;
-    private Mypage mypage;
+    private Noticeboard noticeboard; //게시판 프래그먼트
+    public String userID, userPassword,userSchool, userName, userEmail, userGrade, boardChage; //유저 정보 변수
+    TextView SchoolName_textView;//학교 이름 textview
+    private Cafeteria cafeteria; //급식표 프래그먼트
+    private Mypage mypage; // 마이페이지 프래그먼트
     private AddTimeTableActivity addTimeTableActivity;
 
     @Override
@@ -32,8 +32,10 @@ public class MainFrame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_frame);
 
+        //학교 이름 xml연결
         SchoolName_textView = findViewById(R.id.SchoolName_textView);
 
+        //intent로 넘겨받음 유저 정보 저장
         Intent intent = getIntent();
         //boardChage = intent.getExtras().getString("boardChage");
         userID = intent.getExtras().getString("userID");
@@ -46,9 +48,10 @@ public class MainFrame extends AppCompatActivity {
         //System.out.println(userSchoolname);
         //System.out.println(userName);
         //String userSchoolname = intent.getStringExtra("userSchoolname ");
-        SchoolName_textView.setText(userSchool);
-        ((use_user)this.getApplication()).setUser(userID, userPassword,userSchool, userName, userEmail, userGrade);
+        SchoolName_textView.setText(userSchool); // 유저 학교 이름 저장하기
+        ((use_user)this.getApplication()).setUser(userID, userPassword,userSchool, userName, userEmail, userGrade); //유저 정보 저장 클래스에 저장
 
+        //하단 메뉴바 순서 설정
         bottomNavigationView = findViewById(R.id.bottomNavi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -73,6 +76,7 @@ public class MainFrame extends AppCompatActivity {
                 return true;
             }
         });
+        //프래그먼트에 넣을 페이지 클래스 가져오기
         activity_home = new Activity_Home();
         noticeboard = new Noticeboard();
         cafeteria = new Cafeteria();
@@ -82,10 +86,10 @@ public class MainFrame extends AppCompatActivity {
         setFrag(0); // 첫화면을 설정
     }
 
-    private  void setFrag(int n){
+    public void setFrag(int n){
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
-
+        // 각 페이지에 프래그먼트 연결
         switch (n) {
             case 0 : //홈화면
                 Bundle bundle2 = new Bundle();
@@ -103,6 +107,9 @@ public class MainFrame extends AppCompatActivity {
                 ft.commit();
                 break;
             case 2 : //급식
+                Bundle bundle3 = new Bundle();
+                bundle3.putString("userGrade", userGrade);
+                cafeteria.setArguments(bundle3);
                 ft.replace(R.id.main_frame, cafeteria);
                 ft.commit();
                 break;

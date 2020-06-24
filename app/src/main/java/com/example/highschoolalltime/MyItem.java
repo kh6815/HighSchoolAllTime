@@ -1,6 +1,7 @@
 package com.example.highschoolalltime;
 
 public class MyItem {
+    //게시글 아이템 정보 변수
     private String  userIDStr;
     private String titleStr;
     private String contentStr;
@@ -10,6 +11,7 @@ public class MyItem {
     private String hotCountStr;
     private String hotclickUserStr;
 
+    //생성자 함수로 게시글 정보 저장
     public MyItem(String userID,String title, String content, String comment,String time, String hotCount, String hotclickUser){
         this.userIDStr = userID;
         this.titleStr = title;
@@ -21,6 +23,7 @@ public class MyItem {
     }
     public MyItem() {};
 
+    //값을 저장하는 메서드
     public void setuserID(String userID){
         userIDStr = userID;
     }
@@ -42,6 +45,7 @@ public class MyItem {
     }
     public void setWhatboard(String whatboard) {whatboardStr = whatboard;}
 
+    //값을 불러오는 메서드
     public String getuserID(){
         return this.userIDStr;
     }

@@ -8,7 +8,7 @@
     tools:context=".Activity_Home"
     android:fontFamily="@font/nanumsquareroundb">
 
-
+    <!-- 할일, 시간표 틀 레이아웃 -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="409dp"
@@ -20,13 +20,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- 할일 레이아웃 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             >
-
+            <!-- 할일 텍스트, 버튼 삽입 레이아웃-->
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
@@ -55,7 +56,7 @@
                     android:textSize="30dp" />
 
             </LinearLayout>
-
+            <!-- 할일 리스트뷰-->
             <ListView
                 android:id="@+id/mySche"
                 android:layout_width="match_parent"
@@ -67,13 +68,13 @@
 
             </ListView>
         </LinearLayout>
-
+        <!-- 시간표 레이아웃 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
-
+            <!-- 시간표 텍스트, 버튼 삽입 레이아웃-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,7 +101,7 @@
                     android:textSize="30dp" />
 
             </LinearLayout>
-
+            <!-- 시간표 리스트뷰-->
             <ListView
                 android:id="@+id/myTimetable"
                 android:layout_width="match_parent"
@@ -110,7 +111,7 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    <!-- 날짜와 급식표틀 레이아웃-->
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="0dp"
@@ -128,7 +129,7 @@
             android:layout_weight="1"
             android:text="시간, 요일, 날짜"
             android:textSize="30dp" />
-
+        <!-- 급식표 정렬 레이아웃-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -156,6 +157,7 @@
 
     </LinearLayout>
 
+    <!-- 공지사항 삽입 텍스트뷰-->
     <TextView
         android:id="@+id/Alarm_textView"
         android:layout_width="wrap_content"
@@ -184,6 +186,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.702" />
 
+    <!-- 라인 생성-->
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -194,6 +197,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <!-- 라인 생성-->
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"

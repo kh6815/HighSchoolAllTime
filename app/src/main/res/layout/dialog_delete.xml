@@ -5,7 +5,9 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp" >
+    <!--과목 삭제 dialogLayout-->
 
+    <!--Tittle-->
     <TextView
         android:id="@+id/del_textviewLogo"
         android:layout_width="200dp"
@@ -17,6 +19,7 @@
         android:text="과목 삭제" />
 
 
+    <!--요일 설정-->
     <TextView
         android:id="@+id/del_textviewDay"
         android:layout_width="wrap_content"
@@ -34,9 +37,10 @@
         android:entries="@array/day"
         android:layout_marginBottom="10dp"
         android:inputType="textPassword"
-        android:layout_below="@+id/del_textviewDay" />//요일 선택 Spiner
+        android:layout_below="@+id/del_textviewDay" />
 
 
+    <!--시간 설정-->
     <TextView
         android:id="@+id/del_textviewTime"
         android:layout_width="wrap_content"
@@ -54,7 +58,9 @@
         android:entries="@array/time"
         android:layout_marginBottom="10dp"
         android:inputType="textPassword"
-        android:layout_below="@+id/del_textviewTime" />//수강시간 선택 Spiner
+        android:layout_below="@+id/del_textviewTime" />
+
+    <!--확인 및 취소 버튼-->
     <LinearLayout
         android:layout_width="191dp"
         android:layout_height="wrap_content"
@@ -81,7 +87,7 @@
             android:background="@drawable/button_shape2"
             android:layout_marginVertical="5dp"
             android:layout_below="@+id/del_edittextTime"
-            android:text="취소" />//android:layout_below를 이용해 순차적으로 배열함
+            android:text="취소" /><!--android:layout_below를 이용해 순차적으로 배열함-->
     </LinearLayout>
 
 </RelativeLayout>
