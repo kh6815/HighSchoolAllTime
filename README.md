@@ -1,4 +1,7 @@
 # HighSchoolAllTime
+동작 결과 실행 동영상
+-https://www.youtube.com/watch?v=3kfZk2Mhfzk&feature=youtu.be
+
 1. 팀 활동 시 규칙 및 팀원간 역할 분담, 기본적 주간 계획표 작성
 
 2. 팀원 간 회의 진행
