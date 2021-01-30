@@ -43,55 +43,55 @@
 	게시판 : [담당자 최강현]각종 게시판으로 이동할 수 있는 버튼들로 구성하여 희망 게시판의 버튼을 클릭 시 Intent로 해당 게시판으로 이동하도록 하였고, 게시글의 Tittle을 보여주는 ListView와 게시글 작성하는 버튼으로 구성하여 추가 버튼을 클릭 시 다이얼로그를 띄워 게시글 작성하도록 구현
 
 8. 추가했던 기능 검토 및 보완
-	시간표 : [담당자 이성민] 외부 데이터베이스(닷홈, 파일질라)에 데이터 삽입, 수정, 삭제가 가능하도록 구현. 기존 시간표 상단에 위치한 Spiner를 디자인을 위해 xml파일을 생성해 EditText와 Spiner, 확인, 취소 버튼을 한 Page로 만들고 다이얼로그에 xml을 띄워 내용과 요일/시간을 한번에 설정하도록 구현
-	급식표 : [담당자 이시형] 기존 GridView 하단에 위치한 급식 추가 EditText를 GridView로 생성한 Calendar내 날짜 클릭 이벤트로 다이얼로그를 띄워 다이얼로그로 EditText를 이용해 내용을 받을 수 있도록 기능 보완
+	-시간표 : [담당자 이성민] 외부 데이터베이스(닷홈, 파일질라)에 데이터 삽입, 수정, 삭제가 가능하도록 구현. 기존 시간표 상단에 위치한 Spiner를 디자인을 위해 xml파일을 생성해 EditText와 Spiner, 확인, 취소 버튼을 한 Page로 만들고 다이얼로그에 xml을 띄워 내용과 요일/시간을 한번에 설정하도록 구현
+	-급식표 : [담당자 이시형] 기존 GridView 하단에 위치한 급식 추가 EditText를 GridView로 생성한 Calendar내 날짜 클릭 이벤트로 다이얼로그를 띄워 다이얼로그로 EditText를 이용해 내용을 받을 수 있도록 기능 보완
 
 9. 회의를 통한 추가 화면 구현 및 데이터베이스 실제 구현(데이터 삽입, 수정, 삭제)
-	게시판 : [담당자 최강현] 기존 게시글 추가 기능은 Tittle없이 내용만 입력 했었으나 다이얼로그에 2개의 EditText를 이용해 Tittle과 내용 2가지를 받고 게시판 화면 ListView에는 Tittle만 보여주고 Tittle을 클릭 시 해당 게시글의 내용과 댓글들을 확인할 수 있는 화면을 Intent로 전환해 주는 기능 구현. 게시글 추천 버튼도 구성 하여 추후 핫게시판도 활성화할 수 있도록 구현. 게시글 삭제(DB 삭제) 및 댓글 입력(DB 삽입) 기능 구현
-	급식표 : [담당자 이시형] 급식 내용을 데이터베이스에 연동하였고 날짜 클릭 시 다이얼로그를 띄우는데 데이터베이스에 해당 날짜에 맞는 급식(데이터)이 없는 경우 급식이 없음을 보여주고 추가 등의 이벤트가 가능하고 급식이 있는 경우 데이터베이스에서 날짜에 맞는 급식(데이터)를 가져와 TexView로 보여주고 수정 등의 이벤트가 가능하도록 구현, 또한 교사일 경우만 급식표를 수정, 삭제하도록 기능을 구현
-	My Page : [담당자 이시형] 데이터베이스와 연동하여 회원탈퇴 버튼 클릭 시 정보를 입력하면 일치하는 정보를 데이터베이스에서 Delete하고 정보수정 버튼 클릭 시 입력한 정보를 Update하는 기능 구현
+	-게시판 : [담당자 최강현] 기존 게시글 추가 기능은 Tittle없이 내용만 입력 했었으나 다이얼로그에 2개의 EditText를 이용해 Tittle과 내용 2가지를 받고 게시판 화면 ListView에는 Tittle만 보여주고 Tittle을 클릭 시 해당 게시글의 내용과 댓글들을 확인할 수 있는 화면을 Intent로 전환해 주는 기능 구현. 게시글 추천 버튼도 구성 하여 추후 핫게시판도 활성화할 수 있도록 구현. 게시글 삭제(DB 삭제) 및 댓글 입력(DB 삽입) 기능 구현
+	-급식표 : [담당자 이시형] 급식 내용을 데이터베이스에 연동하였고 날짜 클릭 시 다이얼로그를 띄우는데 데이터베이스에 해당 날짜에 맞는 급식(데이터)이 없는 경우 급식이 없음을 보여주고 추가 등의 이벤트가 가능하고 급식이 있는 경우 데이터베이스에서 날짜에 맞는 급식(데이터)를 가져와 TexView로 보여주고 수정 등의 이벤트가 가능하도록 구현, 또한 교사일 경우만 급식표를 수정, 삭제하도록 기능을 구현
+	-My Page : [담당자 이시형] 데이터베이스와 연동하여 회원탈퇴 버튼 클릭 시 정보를 입력하면 일치하는 정보를 데이터베이스에서 Delete하고 정보수정 버튼 클릭 시 입력한 정보를 Update하는 기능 구현
 
 10. 회의를 통해 각 화면 내 기능 검토 및 추가 보완, 팀원 간 분담 화면 한 프로젝트로 구동 시작
-	시간표 : [담당자 이성민] 기존 데이터베이스에 연동은 하였으나 Delete기능을 구현하지 않아 Del버튼을 추가해 버튼 클릭 시 다이얼로그에 Spiner를 띄워 위치 값만 받아 해당 값에 있는 데이터 Delete 기능 추가히였고 기능 보완은 추가 버튼 클릭 시 데이터가 없는 경우 Insert하고 데이터가 있는 경우 Update하도록 구현
-	코드 합치기 : 하나의 어플로 구동하기 위해 하나의 프로젝트에 각자 구현한 페이지를 합치기 시작(로그인, 홈, 급식표, My Page)
+	-시간표 : [담당자 이성민] 기존 데이터베이스에 연동은 하였으나 Delete기능을 구현하지 않아 Del버튼을 추가해 버튼 클릭 시 다이얼로그에 Spiner를 띄워 위치 값만 받아 해당 값에 있는 데이터 Delete 기능 추가히였고 기능 보완은 추가 버튼 클릭 시 데이터가 없는 경우 Insert하고 데이터가 있는 경우 Update하도록 구현
+	-코드 합치기 : 하나의 어플로 구동하기 위해 하나의 프로젝트에 각자 구현한 페이지를 합치기 시작(로그인, 홈, 급식표, My Page)
 
 11. 어플 내 화면 디자인 수정 및 팀원 간 분담한 화면 한 프로젝트로 구동
-	로딩화면 	: [담당자 최강현] 어플 구동 시 로그인 이전 어플을 상징할 Image와 어플 이름을 띄워 로딩 화면 구현
-	디자인 수정 : 전제척으로 어플의 색감 지정
-	코드 합치기 : 기존 합친 코드에 시간표 화면까지 코드 합침
+	-로딩화면 	: [담당자 최강현] 어플 구동 시 로그인 이전 어플을 상징할 Image와 어플 이름을 띄워 로딩 화면 구현
+	-디자인 수정 : 전제척으로 어플의 색감 지정
+	-코드 합치기 : 기존 합친 코드에 시간표 화면까지 코드 합침
 
 12. 어플 내 화면 디자인 수정 및 자동 로그인 기능 및 어플 종료 이벤트 기능 추가 구현
-	디자인 수정 : 전체적 색감 재지정 및 기존 직사각형의 상자를 둥근 타원형으로 바꾸고 버튼들도 색감을 지정
-	자동 로그인 : 로그인 시 체크박스를 이용해 어플 재가동 시 이전 로그인 기록을 이용해 자동 로그인 기능을 추가 구현
-	홈 화면 : [담당자 최강현] 금일 날짜에 맞는 시간표를 데이터베이스에서 가져와 ListView에 띄워 확인 가능케 함
+	-디자인 수정 : 전체적 색감 재지정 및 기존 직사각형의 상자를 둥근 타원형으로 바꾸고 버튼들도 색감을 지정
+	-자동 로그인 : 로그인 시 체크박스를 이용해 어플 재가동 시 이전 로그인 기록을 이용해 자동 로그인 기능을 추가 구현
+	-홈 화면 : [담당자 최강현] 금일 날짜에 맞는 시간표를 데이터베이스에서 가져와 ListView에 띄워 확인 가능케 함
 
 13. 최종 디자인 수정 및 회의를 통해 추가할 화면 구현
-	디자인 수정
+	-디자인 수정
 		1)시간표 : 시간표 화면 내 버튼에 색감을 지정하고 시간표도 어플의 색감과 비슷한 색감을 지정하고 기존 화면에 비해 크기가 작은 시간표를 키워 화면 내 여백을 최대한 없애 디자인 수정
 		2)홈 화면 : 금일 스케쥴와 시간표를 나란히 배치하여 여백을 최대한 활용하고, 실선을 넣어 나누어져 보이는 효과를 줌
-	스케쥴 화면 : [담당자 이성민] 기존 급식표 화면을 참고해 GridView로 Calendar를 생성하고 GridView하단에 TextView를 넣어 금일 일정을 보여주고 날짜 클릭 이벤트로 데이터베이스에 일정 삽입, 수정, 삭제 기능을 구현
+	-스케쥴 화면 : [담당자 이성민] 기존 급식표 화면을 참고해 GridView로 Calendar를 생성하고 GridView하단에 TextView를 넣어 금일 일정을 보여주고 날짜 클릭 이벤트로 데이터베이스에 일정 삽입, 수정, 삭제 기능을 구현
 
 페이지 별 연동 Class
 로딩
-	activity_loading.xml
-	-어플 로고인 ImageView android:src="@drawable/icon"
-	Loading Class
-	-final Animation animTransRotate = AnimationUtils.loadAnimation(this,R.anim.rotate);이용하여 로딩화면 애니메이션 첨가
-	-SharedPreferences를 이용해 값이 있는 경우 Handler를 이용해 값을 넣어 자동 로그인 되어 MainFram Class로 전환
-	-값이 없는 경우 로그인 되지 않았으므로 Main_login Class로 전환해 로그인하도록 함
-	-LoginRequest JAVA Class를 이용해 파일질라 Login.php와 연동
+	1) activity_loading.xml
+	  -어플 로고인 ImageView android:src="@drawable/icon"
+	2) Loading Class
+	  -final Animation animTransRotate = AnimationUtils.loadAnimation(this,R.anim.rotate);이용하여 로딩화면 애니메이션 첨가
+	  -SharedPreferences를 이용해 값이 있는 경우 Handler를 이용해 값을 넣어 자동 로그인 되어 MainFram Class로 전환
+	  -값이 없는 경우 로그인 되지 않았으므로 Main_login Class로 전환해 로그인하도록 함
+	  -LoginRequest JAVA Class를 이용해 파일질라 Login.php와 연동
 
 로그인
-	activity_main_login.xml
-	-TextBax 디자인 android:background="@drawable/text_shape"
-	-버튼 색 지정 Login : android:background="@drawable/button_shape"
-	-찾기 버튼 색 지정 : android:background="@drawable/button_shape2" / 아이콘 : app:srcCompat="@android:drawable/ic_menu_search"
-	-버튼 색 지정 TO JOIN : android:background="@drawable/button_shape1"
-	Main_login
-	-use_user JAVA Class
-	-LoginRequest JAVA Class 구현 및 파일질라 Login.php와 연동
-	-TO JOIN 버튼 클릭 시 Join_login Class로 전환
-	-돋보기 버튼 클릭 시 Find_IDPW_login Class로 전환
+	1) activity_main_login.xml
+	  -TextBax 디자인 android:background="@drawable/text_shape"
+	  -버튼 색 지정 Login : android:background="@drawable/button_shape"
+	  -찾기 버튼 색 지정 : android:background="@drawable/button_shape2" / 아이콘 : app:srcCompat="@android:drawable/ic_menu_search"
+	  -버튼 색 지정 TO JOIN : android:background="@drawable/button_shape1"
+	2) Main_login
+	  -use_user JAVA Class
+	  -LoginRequest JAVA Class 구현 및 파일질라 Login.php와 연동
+	  -TO JOIN 버튼 클릭 시 Join_login Class로 전환
+	  -돋보기 버튼 클릭 시 Find_IDPW_login Class로 전환
 
 회원가입
 	activity_join_login.xml
