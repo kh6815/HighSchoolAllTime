@@ -70,9 +70,10 @@
 		1)시간표 : 시간표 화면 내 버튼에 색감을 지정하고 시간표도 어플의 색감과 비슷한 색감을 지정하고 기존 화면에 비해 크기가 작은 시간표를 키워 화면 내 여백을 최대한 없애 디자인 수정
 		2)홈 화면 : 금일 스케쥴와 시간표를 나란히 배치하여 여백을 최대한 활용하고, 실선을 넣어 나누어져 보이는 효과를 줌
 	-스케쥴 화면 : [담당자 이성민] 기존 급식표 화면을 참고해 GridView로 Calendar를 생성하고 GridView하단에 TextView를 넣어 금일 일정을 보여주고 날짜 클릭 이벤트로 데이터베이스에 일정 삽입, 수정, 삭제 기능을 구현
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 페이지 별 연동 Class
-로딩
+1. 로딩
 	1) activity_loading.xml
 	  -어플 로고인 ImageView android:src="@drawable/icon"
 	2) Loading Class
@@ -81,7 +82,7 @@
 	  -값이 없는 경우 로그인 되지 않았으므로 Main_login Class로 전환해 로그인하도록 함
 	  -LoginRequest JAVA Class를 이용해 파일질라 Login.php와 연동
 
-로그인
+2. 로그인
 	1) activity_main_login.xml
 	  -TextBax 디자인 android:background="@drawable/text_shape"
 	  -버튼 색 지정 Login : android:background="@drawable/button_shape"
@@ -93,74 +94,74 @@
 	  -TO JOIN 버튼 클릭 시 Join_login Class로 전환
 	  -돋보기 버튼 클릭 시 Find_IDPW_login Class로 전환
 
-회원가입
-	activity_join_login.xml
-	-회원가입 Tittle 색 지정 android:background="#596889"
-	-버튼 색 지정 android:background="@drawable/button_shape4"
-	Join_login
-	-ValidateRequest JAVA Class 구현 및 파일질라 UserValidate.php와 연동하여 아이디 중복값 확인
-	-회원가입 후 RegisterRequest JAVA Class 구현 및 파일질라 RegisterRequest.php와 연동하여 입력값 삽입
+3. 회원가입
+	1) activity_join_login.xml
+	  -회원가입 Tittle 색 지정 android:background="#596889"
+	  -버튼 색 지정 android:background="@drawable/button_shape4"
+	2) Join_login
+	  -ValidateRequest JAVA Class 구현 및 파일질라 UserValidate.php와 연동하여 아이디 중복값 확인
+	  -회원가입 후 RegisterRequest JAVA Class 구현 및 파일질라 RegisterRequest.php와 연동하여 입력값 삽입
 
-아이디 / 패스워드 찾기
-	activity_find__i_d_p_w_loging.xml
-	-버튼 디자인 android:background="@drawable/button_shape4"
-	Find_IDPW_login
-	-아이디 찾기 시 FIndID_Request JAVA Class 구현 및 파일질라 FindID.php와 연동
-	-패스워드 찾기 시 FindIDPW_Request JAVA Class 구현 및 파일질라 FindPW.php와 연동
-	-패스워드 찾고 정보가 있는 경우 SetPW_login Class로 화면 전환
+4. 아이디 / 패스워드 찾기
+	1) activity_find__i_d_p_w_loging.xml
+	  -버튼 디자인 android:background="@drawable/button_shape4"
+	2) Find_IDPW_login
+	  -아이디 찾기 시 FIndID_Request JAVA Class 구현 및 파일질라 FindID.php와 연동
+	  -패스워드 찾기 시 FindIDPW_Request JAVA Class 구현 및 파일질라 FindPW.php와 연동
+	  -패스워드 찾고 정보가 있는 경우 SetPW_login Class로 화면 전환
 		ºactivity_set_p_w_login.xml
 		-버튼 지정 android:background="@drawable/button_shape4"
 		ºSetPW_login Class
 		-Update_User_PW JAVA Class 구현 및 Update_User_PW.php와 연동
 
-홈
-	activity_home.xml
-	-할 일 버튼 디자인 android:background="@drawable/button_shape1"
-	-시간표 버튼 디자인 android:background="@drawable/button_shape2"
-	Activity_Home Class
-	-할 일 버튼 클릭 시 ScheduleActivity Class로 전환
-	-시간표 버튼 클릭 시 AddTimeTable Class로 전환
-	-getData("http://highschool.dothome.co.kr/HomegetTimeTable.php", result);를 이용해 닷홈에 시간표 테이블에서 금일 시간표 가져옴
-	-Cafeteria_Request JAVA Class를 이용해 저장되어 있는 급식을 불러옴
+5. 홈
+	1) activity_home.xml
+	  -할 일 버튼 디자인 android:background="@drawable/button_shape1"
+	  -시간표 버튼 디자인 android:background="@drawable/button_shape2"
+	2) Activity_Home Class
+	  -할 일 버튼 클릭 시 ScheduleActivity Class로 전환
+	  -시간표 버튼 클릭 시 AddTimeTable Class로 전환
+	  -getData("http://highschool.dothome.co.kr/HomegetTimeTable.php", result);를 이용해 닷홈에 시간표 테이블에서 금일 시간표 가져옴
+	  -Cafeteria_Request JAVA Class를 이용해 저장되어 있는 급식을 불러옴
 
-시간표
-	activity_add_time_table.xml
-	-시간표 색 지정 background="@drawable/table_inside_schema"
-	-Del 버튼 색 지정 android:background="@drawable/button_shape2"
-	-Ins 버튼 색 지정 android:background="@drawable/button_shape1"
-	AddTImeTableActivity Class
-	-버튼 클릭 시 생성 될 Dialog 화면 dialog_add.xml 및 dialog_delete.xml에 요일 Spiner 값 android:entries="@array/day" / 수강 시간 android:entries="@array/time"
-	-시간표 테이블에서 데이터를 가져와 화면에 띄우는 메소드 getData("http://highschool.dothome.co.kr/getTimeTable.php");
-	-데이터 베이스 호출 TImeTable_Request JAVA Class 구현 및 파일질라 TimeTable_Request.php와 연동
-	-삽입 Register_Time JAVA Class 구현 및 파일질라 Register_Time.php와 연동
-	-수정 Update_Time JAVA Class 구현 및 파일질라 Update_Time.php와 연동
-	-삭제 Delete_Time JAVA Class  구현 및 파일질라 Delete_Time.php와 연동
+6. 시간표
+	1) activity_add_time_table.xml
+	  -시간표 색 지정 background="@drawable/table_inside_schema"
+	  -Del 버튼 색 지정 android:background="@drawable/button_shape2"
+	  -Ins 버튼 색 지정 android:background="@drawable/button_shape1"
+	2) AddTImeTableActivity Class
+	  -버튼 클릭 시 생성 될 Dialog 화면 dialog_add.xml 및 dialog_delete.xml에 요일 Spiner 값 android:entries="@array/day" / 수강 시간 android:entries="@array/time"
+	  -시간표 테이블에서 데이터를 가져와 화면에 띄우는 메소드 getData("http://highschool.dothome.co.kr/getTimeTable.php");
+	  -데이터 베이스 호출 TImeTable_Request JAVA Class 구현 및 파일질라 TimeTable_Request.php와 연동
+	  -삽입 Register_Time JAVA Class 구현 및 파일질라 Register_Time.php와 연동
+	  -수정 Update_Time JAVA Class 구현 및 파일질라 Update_Time.php와 연동
+	  -삭제 Delete_Time JAVA Class  구현 및 파일질라 Delete_Time.php와 연동
 
 
-급식표
-	activity_cafeteria.xml
-	-지난달 버튼 디자인 background="@drawable/ic_keyboard_arrow_left_black_24dp"
-	-다음달 버튼 디자인 background="@drawable/ic_keyboard_arrow_right_black_24dp"
-	-gridview의 배경 디자인 background="@drawable/gv_cafe_day", gridview_selector.xml을 통해 기본 패딩 삭제
-	달력의 각 날짜의 layout은 cafeteria_day를 사용하였다.
-	Cafeteria.java
-	-gridview 구현을 위해 adapter폴더의 cafeteria_Adapter class사용, domain폴더의 DayInfo class사용
-	-(DB와 연동 ) 호출 : Cafeteria_Request.java로 Cafeteria.php와 연동.
-	-(DB와 연동 ) 추가 : Register_Cafe.java로 Register_Cafe.php와 연동.
-	-(DB와 연동 ) 수정 : Update_Cafe.java로 Update_Cafe.php와 연동.
-	-교사가 급식 달력을 클릭 할 시 다이얼로그 창이 뜨도록 구현.  dialog창의 layout은 cafeteria_dialog.xml 사용.
-	cafeteria_dialog.xml
-	-취소 버튼 디자인 background="@drawable/button_shape2"
-	-추가 버튼 디자인 background="@drawable/button_shape1"
+7. 급식표
+	1)  activity_cafeteria.xml
+	  -지난달 버튼 디자인 background="@drawable/ic_keyboard_arrow_left_black_24dp"
+	  -다음달 버튼 디자인 background="@drawable/ic_keyboard_arrow_right_black_24dp"
+	  -gridview의 배경 디자인 background="@drawable/gv_cafe_day", gridview_selector.xml을 통해 기본 패딩 삭제
+	  -달력의 각 날짜의 layout은 cafeteria_day를 사용하였다.
+	2) Cafeteria.java
+	  -gridview 구현을 위해 adapter폴더의 cafeteria_Adapter class사용, domain폴더의 DayInfo class사용
+	  -(DB와 연동 ) 호출 : Cafeteria_Request.java로 Cafeteria.php와 연동.
+	  -(DB와 연동 ) 추가 : Register_Cafe.java로 Register_Cafe.php와 연동.
+	  -(DB와 연동 ) 수정 : Update_Cafe.java로 Update_Cafe.php와 연동.
+	  -교사가 급식 달력을 클릭 할 시 다이얼로그 창이 뜨도록 구현.  dialog창의 layout은 cafeteria_dialog.xml 사용.
+	3) cafeteria_dialog.xml
+	  -취소 버튼 디자인 background="@drawable/button_shape2"
+	  -추가 버튼 디자인 background="@drawable/button_shape1"
 
 	
 
-게시판
-	activity_noticeboard.xml
-	- 게시판 버튼 디자인 android:background="@drawable/button_shape3"
-	-기타 하단 버튼 디자인 android:background="@drawable/button_shape4"
-	Noticeboard Class
-	-버튼 클릭시 Intent로 화면 전환
+8. 게시판
+	1) activity_noticeboard.xml
+	  - 게시판 버튼 디자인 android:background="@drawable/button_shape3"
+	  -기타 하단 버튼 디자인 android:background="@drawable/button_shape4"
+	2) Noticeboard Class
+	  -버튼 클릭시 Intent로 화면 전환
 		ºactivity_notice_board.xml
 		-버튼 디자인 android:background="@drawable/button_shape1"
 		ºNotice_Borard Class
@@ -193,64 +194,64 @@
 		-게시글 삭제 시 댓글 삭제 : DeleteRequest_WithComment JAVA Class 구현 및 Delete_WithComments.php와 연동
 		-추천 수 Update : UpdateRequest_CommentCont JAVA Class 구현 및 Update_CommentsCount.phh와 연동
 
-My Page
-	activity_mypage.xml
-	-로그아웃 버튼 디자인 background="@drawable/button_shape"
-	-회원탈퇴 버튼 디자인 background="@drawable/button_shape1"
-	-정보변경 버튼 디자인 background="@drawable/button_shape2"
-	Mypage.java
-	외부 DB에서 쓴글을 listview로 불러온다.
-	-(DB와 연동 ) 호출 : Mypage_BoardSet.php와 연동.
-	listview를 클릭 할 경우 Clickboard.java로 이동. Clickboard.java는 게시판에서 설명한다.
-	외부 DB에서 쓴 댓글을 listview로 불러온다.
-	-(DB와 연동 ) 호출 : Mypage_CommentSet.php와 연동.
-	listview를 클릭 할 경우 listview를 클릭 할 경우 Clickboard.java로 이동. Clickboard.java는 게시판에서 설명한다.
-	-로그아웃 버튼 클릭 시 Main_login.java로 이동. Main_login.java는 로그인 페이지에서 설명한다.
-	-회원탈퇴 버튼 클릭 시 withdraw.java로 이동. layout 파일은 activity_withdraw.xml 사용.
-	-정보변경 버튼 클릭 시 ChangeInformation.java로 이동. layout 파일은 activity_change_information.xml 사용.
-	withdraw.java
-	-(DB와 연동) 삭제 : Delet_User.java로 Delet_User.php와 연동
-	activity_withdraw.xml
-	-회원탈퇴 버튼 디자인 background="@drawable/button_shape4
-	ChangeInformation.java
-	-(DB와 연동) 수정 : Update_User.java로 Update_User.php와 연동
-	activity_change_information.xml
-	-확인 버튼 디자인 background="@drawable/button_shape1
+9. My Page
+	1) activity_mypage.xml
+	  -로그아웃 버튼 디자인 background="@drawable/button_shape"
+	  -회원탈퇴 버튼 디자인 background="@drawable/button_shape1"
+	  -정보변경 버튼 디자인 background="@drawable/button_shape2"
+	2) Mypage.java
+	  -외부 DB에서 쓴글을 listview로 불러온다.
+	  -(DB와 연동 ) 호출 : Mypage_BoardSet.php와 연동.
+	  -listview를 클릭 할 경우 Clickboard.java로 이동. Clickboard.java는 게시판에서 설명한다.
+	  - 외부 DB에서 쓴 댓글을 listview로 불러온다.
+	  -(DB와 연동 ) 호출 : Mypage_CommentSet.php와 연동.
+	  -listview를 클릭 할 경우 listview를 클릭 할 경우 Clickboard.java로 이동. Clickboard.java는 게시판에서 설명한다.
+	  -로그아웃 버튼 클릭 시 Main_login.java로 이동. Main_login.java는 로그인 페이지에서 설명한다.
+	  -회원탈퇴 버튼 클릭 시 withdraw.java로 이동. layout 파일은 activity_withdraw.xml 사용.
+	  -정보변경 버튼 클릭 시 ChangeInformation.java로 이동. layout 파일은 activity_change_information.xml 사용.
+	3) withdraw.java
+	  -(DB와 연동) 삭제 : Delet_User.java로 Delet_User.php와 연동
+	4) activity_withdraw.xml
+	  -회원탈퇴 버튼 디자인 background="@drawable/button_shape4
+	5) ChangeInformation.java
+	  -(DB와 연동) 수정 : Update_User.java로 Update_User.php와 연동
+	6) activity_change_information.xml
+	  -확인 버튼 디자인 background="@drawable/button_shape1
 
 	
-스케쥴
-	activity_schedule.xml
-	-지난달 버튼 디자인 background="@drawable/ic_keyboard_arrow_left_black_24dp"
-	-다음달 버튼 디자인 background="@drawable/ic_keyboard_arrow_right_black_24dp"
-	-일정 추가 버튼 디자인 background="@drawable/button_shape1"
-	-gridview의 배경 디자인 background="@drawable/gv_cafe_day", gridview_selector.xml을 통해 기본 패딩 삭제
-	-달력의 각 날짜의 layout은 cafeteria_day.xml을 사용하였다.
-	ScheduleActivity.java
-	-gridview 구현을 위해 adapter폴더의 cafeteria_Adapter class사용, domain폴더의 DayInfo class사용
-	-listview 구현을 위해 ScheduleAdapter class에서 Scheduleitem.java, ScheduleitemView사용
-	-ScheduleitemView의 layout 파일로 schedule_list_item.xml 사용.
-	-(DB와 연동 ) 호출 : ScheduleTable.php와 연동.
-	-(DB와 연동 ) 확인 :  Schedule.java로  Schedule.php와 연동.
-	-(DB와 연동 ) 추가 : Register_Schedule.java로 Register_Schedule.php와 연동.
-	-(DB와 연동 ) 수정 : Update_Schedule.java로 Update_Schedule.php와 연동.
-	-(DB와 연동 ) 삭제 : Delete_Schedule.java로 Delete_Schedule.php와 연동.
-	-일정 추가버튼 클릭시 dialog창 구현. dialog창의 layout은 schedule_dialog.xml 사용.
-	-listview 클릭시 dialog창 구현. dialog 창의 수정 버튼 클릭 시 dialog창 구현. dialog창의 layout은 schedule_dialog_update.xml 사용.
-	schedule_dialog.xml 
-	-취소 버튼 디자인 background="@drawable/button_shape2"
-	-추가 버튼 디자인 background="@drawable/button_shape1"
-	schedule_dialog_update.xml 
-	-취소 버튼 디자인 background="@drawable/button_shape2"
-	-수정 버튼 디자인 background="@drawable/button_shape1"
+10. 스케쥴
+	1) activity_schedule.xml
+	  -지난달 버튼 디자인 background="@drawable/ic_keyboard_arrow_left_black_24dp"
+	  -다음달 버튼 디자인 background="@drawable/ic_keyboard_arrow_right_black_24dp"
+	  -일정 추가 버튼 디자인 background="@drawable/button_shape1"
+	  -gridview의 배경 디자인 background="@drawable/gv_cafe_day", gridview_selector.xml을 통해 기본 패딩 삭제
+	  -달력의 각 날짜의 layout은 cafeteria_day.xml을 사용하였다.
+	2) ScheduleActivity.java
+	  -gridview 구현을 위해 adapter폴더의 cafeteria_Adapter class사용, domain폴더의 DayInfo class사용
+	  -listview 구현을 위해 ScheduleAdapter class에서 Scheduleitem.java, ScheduleitemView사용
+	  -ScheduleitemView의 layout 파일로 schedule_list_item.xml 사용.
+	  -(DB와 연동 ) 호출 : ScheduleTable.php와 연동.
+	  -(DB와 연동 ) 확인 :  Schedule.java로  Schedule.php와 연동.
+	  -(DB와 연동 ) 추가 : Register_Schedule.java로 Register_Schedule.php와 연동.
+	  -(DB와 연동 ) 수정 : Update_Schedule.java로 Update_Schedule.php와 연동.
+	  -(DB와 연동 ) 삭제 : Delete_Schedule.java로 Delete_Schedule.php와 연동.
+	  -일정 추가버튼 클릭시 dialog창 구현. dialog창의 layout은 schedule_dialog.xml 사용.
+	  -listview 클릭시 dialog창 구현. dialog 창의 수정 버튼 클릭 시 dialog창 구현. dialog창의 layout은 schedule_dialog_update.xml 사용.
+	3) schedule_dialog.xml 
+	  -취소 버튼 디자인 background="@drawable/button_shape2"
+	  -추가 버튼 디자인 background="@drawable/button_shape1"
+	4) schedule_dialog_update.xml 
+	  -취소 버튼 디자인 background="@drawable/button_shape2"
+	  -수정 버튼 디자인 background="@drawable/button_shape1"
 
 
-폰트
+11. 폰트
 	-커스텀 폰트를 사용하기 위해 res폴더에 font폴더를 만든다.
 	-font폴더 안에 폰트 커스텀 폰트(nanumsquareroundb.ttf)를 넣고 font_sytle.xml와 연결한다.
 	-values폴더의 sytles.xml에서 폰트를 사용하고 싶은 item에 폰트를 사용한다. 사용법은 styles.xml의 주석을 참고.
 
 
-외부 DB
+12. 외부 DB
 	-외부 DB로 MyDotHome을 사용하였다.
 	-FileZila를 사용하여 DB에 접속해 php 파일을 만들어 넣었다.
 	-안드로이드 스튜디오에서 php파일을 사용해 DB와 연결하였다.
@@ -259,11 +260,11 @@ My Page
 	-안드로이드 스튜디오에서 php파일에 접속 하기 위해 manifests폴더의 AndroidManifest.xml의 <application>에 android:usesCleartextTraffic="true"를 추가한다.
 
 
-수익화 방안
+13. 수익화 방안
 	-홈화면의 공지사항으로 광고를 넣는다.
 	-어플 하단에 광고 배너를 넣는다.
 	-게시판 화면의 공모전 탭에 공모전을 홍보하여 홍보 비용으로 수익을 창출한다.
 
-실용성
+14. 실용성
 	-실제 학교들과 제휴하여 사용할 수 있음.
 	-외부 DB의 크기가 더 커진다면 많은 유저들의 사용이 가능하다.
